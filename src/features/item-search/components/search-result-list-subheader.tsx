@@ -11,6 +11,7 @@ const itemTypeTextMap: ItemTypeTextMap = {
   Kusa: "草",
   Udewa: "腕輪",
   Tsue: "杖",
+  Tsubo: "壺",
 };
 
 export interface SearchResultListSubheaderProps {

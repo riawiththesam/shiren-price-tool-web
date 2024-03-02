@@ -2,7 +2,13 @@ export const ItemStateList = ["Normal", "Noroi", "Shukufuku"] as const;
 
 export type ItemState = (typeof ItemStateList)[number];
 
-export const ItemTypeList = ["Makimono", "Kusa", "Udewa", "Tsue"] as const;
+export const ItemTypeList = [
+  "Makimono",
+  "Kusa",
+  "Udewa",
+  "Tsue",
+  "Tsubo",
+] as const;
 
 export type ItemType = (typeof ItemTypeList)[number];
 

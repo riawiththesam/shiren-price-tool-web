@@ -14,6 +14,7 @@ const itemTypeToTextMap: ItemTypeToTextMap = {
   Kusa: "草",
   Udewa: "腕",
   Tsue: "杖",
+  Tsubo: "壺",
 };
 
 const NoroiBox: React.FC<{ show: boolean }> = (props) => {

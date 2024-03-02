@@ -4,7 +4,7 @@ import { useItemSearch } from "../hooks/use-item-search.ts";
 import { SearchResultList } from "./search-result-list.tsx";
 
 export const ItemSearch: React.FC = () => {
-  const { makimonoList, udewaList, kusaList, tsueList, setPrice } =
+  const { makimonoList, udewaList, kusaList, tsueList, tsuboList, setPrice } =
     useItemSearch();
   const onChangeTextField: React.ChangeEventHandler<HTMLInputElement> = (
     event
@@ -25,6 +25,7 @@ export const ItemSearch: React.FC = () => {
         <SearchResultList list={udewaList} itemType="Udewa" />
         <SearchResultList list={kusaList} itemType="Kusa" />
         <SearchResultList list={tsueList} itemType="Tsue" />
+        <SearchResultList list={tsuboList} itemType="Tsubo" />
       </Stack>
     </Stack>
   );
