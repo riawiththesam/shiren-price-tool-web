@@ -4,17 +4,8 @@ import { list as udewaMaster } from "../../../data/udewa/item-udewa.ts";
 import { list as kusaMaster } from "../../../data/kusa/item-kusa.ts";
 import { fullList as tsueMaster } from "../../../data/tsue/item-tsue.ts";
 import { fullList as tsuboMaster } from "../../../data/tsubo/item-tsubo.ts";
-import { Item, ItemState } from "../../../types/Item.ts";
-
-type ItemStateRateMapType = {
-  [key in ItemState]: number;
-};
-
-const itemStateRateMap: ItemStateRateMapType = {
-  Normal: 1,
-  Noroi: 0.87,
-  Shukufuku: 2,
-};
+import { Item } from "../../../types/Item.ts";
+import { itemStateRateMap } from "../../../data/item/item.ts";
 
 /**
  * 巻物を価格で検索する
