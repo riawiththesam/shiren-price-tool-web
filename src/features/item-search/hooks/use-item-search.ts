@@ -12,6 +12,7 @@ export const useItemSearch = () => {
   const [kusaList, setKusaList] = useState<Array<Item>>([]);
   const [tsueList, setTsueList] = useState<Array<Item>>([]);
   const [buyTsuboList, setBuyTsuboList] = useState<Array<Item>>([]);
+  const [sellTsuboList, setSellTsuboList] = useState<Array<Item>>([]);
 
   const setPrice = (value: string) => {
     const price = Number.parseInt(value, 10);
@@ -29,6 +30,7 @@ export const useItemSearch = () => {
     setTsueList(nextTsueList);
 
     setBuyTsuboList(findTsuboList(price, "buy"));
+    setSellTsuboList(findTsuboList(price, "sell"));
   };
 
   return {
@@ -37,6 +39,7 @@ export const useItemSearch = () => {
     kusaList,
     tsueList,
     buyTsuboList,
+    sellTsuboList,
     setPrice,
   };
 };

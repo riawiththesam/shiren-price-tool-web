@@ -10,6 +10,7 @@ export const ItemSearch: React.FC = () => {
     kusaList,
     tsueList,
     buyTsuboList,
+    sellTsuboList,
     setPrice,
   } = useItemSearch();
   const onChangeTextField: React.ChangeEventHandler<HTMLInputElement> = (
@@ -43,6 +44,11 @@ export const ItemSearch: React.FC = () => {
           list={buyTsuboList}
           itemType="Tsubo"
           purchaseType="buy"
+        />
+        <SearchResultList
+          list={sellTsuboList}
+          itemType="Tsubo"
+          purchaseType="sell"
         />
       </Stack>
     </Stack>
