@@ -1,4 +1,4 @@
-import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 export const WarningTypeList = ["Noroi", "Shukufuku"] as const;
 export type WarningType = (typeof WarningTypeList)[number];
@@ -22,8 +22,8 @@ export const SearchResultListSubheaderWarning: React.FC<
   const { show, warningType } = props;
   if (!show) return null;
   return (
-    <Typography component="span" sx={{ color: "warning.main" }}>
+    <Box component="span" sx={{ color: "warning.main", marginLeft: 1 }}>
       {warningTypeToTextMap[warningType]}
-    </Typography>
+    </Box>
   );
 };

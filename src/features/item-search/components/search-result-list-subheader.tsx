@@ -1,6 +1,6 @@
 import ListSubheader from "@mui/material/ListSubheader";
 import { ItemType } from "../types/Item";
-import { Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { SearchResultListSubheaderWarning } from "./search-result-list-subheader-warning";
 
 type ItemTypeTextMap = {
@@ -25,7 +25,7 @@ export const SearchResultListSubheader: React.FC<
   const { itemType, warningNoroi, warningShukufuku } = props;
   return (
     <ListSubheader>
-      <Typography component="span">{itemTypeTextMap[itemType]}</Typography>
+      <Box component="span">{itemTypeTextMap[itemType]}</Box>
       <SearchResultListSubheaderWarning
         warningType="Noroi"
         show={warningNoroi}
