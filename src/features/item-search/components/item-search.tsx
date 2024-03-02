@@ -27,11 +27,23 @@ export const ItemSearch: React.FC = () => {
         onChange={onChangeTextField}
       />
       <Stack direction="row" spacing={2}>
-        <SearchResultList list={makimonoList} itemType="Makimono" />
-        <SearchResultList list={udewaList} itemType="Udewa" />
-        <SearchResultList list={kusaList} itemType="Kusa" />
-        <SearchResultList list={tsueList} itemType="Tsue" />
-        <SearchResultList list={buyTsuboList} itemType="Tsubo" />
+        <SearchResultList
+          list={makimonoList}
+          itemType="Makimono"
+          purchaseType="buy"
+        />
+        <SearchResultList
+          list={udewaList}
+          itemType="Udewa"
+          purchaseType="buy"
+        />
+        <SearchResultList list={kusaList} itemType="Kusa" purchaseType="buy" />
+        <SearchResultList list={tsueList} itemType="Tsue" purchaseType="buy" />
+        <SearchResultList
+          list={buyTsuboList}
+          itemType="Tsubo"
+          purchaseType="buy"
+        />
       </Stack>
     </Stack>
   );
