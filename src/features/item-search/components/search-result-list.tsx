@@ -1,7 +1,7 @@
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
 import { Item, ItemType } from "../types/Item";
 import { SearchResultListSubheader } from "./search-result-list-subheader";
+import { SearchResultListItem } from "./search-result-list-item";
 
 export interface SearchResultListProps {
   list: Array<Item>;
@@ -24,7 +24,9 @@ export const SearchResultList: React.FC<SearchResultListProps> = (props) => {
       }
     >
       {list.map((item, index) => {
-        return <ListItem key={index}>{item.name}</ListItem>;
+        return (
+          <SearchResultListItem key={index} item={item} itemType={itemType} />
+        );
       })}
     </List>
   );
