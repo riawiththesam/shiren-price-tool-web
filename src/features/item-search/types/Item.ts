@@ -11,8 +11,3 @@ export interface Item {
   buy: number;
   state: ItemState;
 }
-
-export interface MasterItem {
-  name: string;
-  buy: number;
-}
