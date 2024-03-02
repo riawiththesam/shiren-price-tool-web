@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import { useItemSearch } from "../hooks/use-item-search.ts";
 import { SearchResultList } from "./search-result-list.tsx";
 
-export const ItemSearch: React.FC<void> = () => {
+export const ItemSearch: React.FC = () => {
   const { makimonoList, udewaList, kusaList, setPrice } = useItemSearch();
   const onChangeTextField: React.ChangeEventHandler<HTMLInputElement> = (
     event
@@ -20,9 +20,9 @@ export const ItemSearch: React.FC<void> = () => {
         onChange={onChangeTextField}
       />
       <Stack direction="row" spacing={2}>
-        <SearchResultList list={makimonoList} />
-        <SearchResultList list={udewaList} />
-        <SearchResultList list={kusaList} />
+        <SearchResultList list={makimonoList} itemType="Makimono" />
+        <SearchResultList list={udewaList} itemType="Udewa" />
+        <SearchResultList list={kusaList} itemType="Kusa" />
       </Stack>
     </Stack>
   );
