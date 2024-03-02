@@ -134,7 +134,7 @@ export const list = {
     },
     {
       name: "ねだやしの巻物",
-      buy: 1000,
+      buy: 10000,
     },
     {
       name: "聖域の巻物",
