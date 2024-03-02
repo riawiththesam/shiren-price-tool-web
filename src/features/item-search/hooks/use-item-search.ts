@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { list as makimonoMaster } from "./item-makimono.ts";
-import { list as udewaMaster } from "./item-udewa.ts";
-import { list as kusaMaster } from "./item-kusa.ts";
-import { fullList as tsueMaster } from "./item-tsue.ts";
-import { fullList as tsuboMaster } from "./item-tsubo.ts";
+import { list as makimonoMaster } from "../../../data/makimono/item-makimono.ts";
+import { list as udewaMaster } from "../../../data/udewa/item-udewa.ts";
+import { list as kusaMaster } from "../../../data/kusa/item-kusa.ts";
+import { fullList as tsueMaster } from "../../../data/tsue/item-tsue.ts";
+import { fullList as tsuboMaster } from "../../../data/tsubo/item-tsubo.ts";
 import { Item, ItemState } from "../../../types/Item.ts";
 
 type ItemStateRateMapType = {
