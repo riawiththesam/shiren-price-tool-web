@@ -1,5 +1,6 @@
 import { Item } from "../../types/Item";
-import { itemStateRateMap } from "../item/item";
+import { PurchaseType } from "../../types/purchase";
+import { itemStateRateMap, purchaseTypeRateMap } from "../item/item";
 import { fullList as tsueMaster } from "./item-tsue";
 
 /**
@@ -7,17 +8,23 @@ import { fullList as tsueMaster } from "./item-tsue";
  * 杖は呪い、通常が存在する
  *
  * @param price
+ * @param purchaseType
  * @returns
  */
-export function findTsueList(price: number): Array<Item> {
+export function findTsueList(
+  price: number,
+  purchaseType: PurchaseType
+): Array<Item> {
+  const noroiRate =
+    itemStateRateMap["Noroi"] * purchaseTypeRateMap[purchaseType];
   const noroiList: Array<Item> = tsueMaster.list
-    .filter((item) => Math.floor(item.buy * itemStateRateMap["Noroi"]) == price)
+    .filter((item) => Math.floor(item.buy * noroiRate) == price)
     .map((item) => ({ ...item, state: "Noroi" }));
 
+  const normalRate =
+    itemStateRateMap["Normal"] * purchaseTypeRateMap[purchaseType];
   const normalList: Array<Item> = tsueMaster.list
-    .filter(
-      (item) => Math.floor(item.buy * itemStateRateMap["Normal"]) == price
-    )
+    .filter((item) => Math.floor(item.buy * normalRate) == price)
     .map((item) => ({ ...item, state: "Normal" }));
 
   return [...noroiList, ...normalList];

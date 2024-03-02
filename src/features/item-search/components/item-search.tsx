@@ -8,7 +8,8 @@ export const ItemSearch: React.FC = () => {
     makimonoList,
     udewaList,
     kusaList,
-    tsueList,
+    buyTsueList,
+    sellTsueList,
     buyTsuboList,
     sellTsuboList,
     setPrice,
@@ -39,7 +40,16 @@ export const ItemSearch: React.FC = () => {
           purchaseType="buy"
         />
         <SearchResultList list={kusaList} itemType="Kusa" purchaseType="buy" />
-        <SearchResultList list={tsueList} itemType="Tsue" purchaseType="buy" />
+        <SearchResultList
+          list={buyTsueList}
+          itemType="Tsue"
+          purchaseType="buy"
+        />
+        <SearchResultList
+          list={sellTsueList}
+          itemType="Tsue"
+          purchaseType="sell"
+        />
         <SearchResultList
           list={buyTsuboList}
           itemType="Tsubo"

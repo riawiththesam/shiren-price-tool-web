@@ -10,7 +10,8 @@ export const useItemSearch = () => {
   const [makimonoList, setMakimonoList] = useState<Array<Item>>([]);
   const [udewaList, setUdewaList] = useState<Array<Item>>([]);
   const [kusaList, setKusaList] = useState<Array<Item>>([]);
-  const [tsueList, setTsueList] = useState<Array<Item>>([]);
+  const [buyTsueList, setBuyTsueList] = useState<Array<Item>>([]);
+  const [sellTsueList, setSellTsueList] = useState<Array<Item>>([]);
   const [buyTsuboList, setBuyTsuboList] = useState<Array<Item>>([]);
   const [sellTsuboList, setSellTsuboList] = useState<Array<Item>>([]);
 
@@ -26,8 +27,8 @@ export const useItemSearch = () => {
     const nextKusaList = findKusaList(price);
     setKusaList(nextKusaList);
 
-    const nextTsueList = findTsueList(price);
-    setTsueList(nextTsueList);
+    setBuyTsueList(findTsueList(price, "buy"));
+    setSellTsueList(findTsueList(price, "sell"));
 
     setBuyTsuboList(findTsuboList(price, "buy"));
     setSellTsuboList(findTsuboList(price, "sell"));
@@ -37,7 +38,8 @@ export const useItemSearch = () => {
     makimonoList,
     udewaList,
     kusaList,
-    tsueList,
+    buyTsueList,
+    sellTsueList,
     buyTsuboList,
     sellTsuboList,
     setPrice,
