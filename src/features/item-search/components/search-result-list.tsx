@@ -1,5 +1,5 @@
 import List from "@mui/material/List";
-import { Item, ItemType } from "../types/Item";
+import { Item, ItemType } from "../../../types/Item";
 import { SearchResultListSubheader } from "./search-result-list-subheader";
 import { SearchResultListItem } from "./search-result-list-item";
 

@@ -1,5 +1,5 @@
 import ListSubheader from "@mui/material/ListSubheader";
-import { ItemType } from "../types/Item";
+import { ItemType } from "../../../types/Item";
 import { Box } from "@mui/material";
 import { SearchResultListSubheaderWarning } from "./search-result-list-subheader-warning";
 

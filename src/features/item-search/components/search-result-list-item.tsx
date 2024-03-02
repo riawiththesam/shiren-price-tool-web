@@ -1,5 +1,5 @@
 import { ListItem, Box } from "@mui/material";
-import { Item, ItemType } from "../types/Item";
+import { Item, ItemType } from "../../../types/Item";
 
 export interface SearchResultListItemProps {
   itemType: ItemType;

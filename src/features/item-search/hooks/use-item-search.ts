@@ -4,7 +4,7 @@ import { list as udewaMaster } from "./item-udewa.ts";
 import { list as kusaMaster } from "./item-kusa.ts";
 import { fullList as tsueMaster } from "./item-tsue.ts";
 import { fullList as tsuboMaster } from "./item-tsubo.ts";
-import { Item, ItemState } from "../types/Item.ts";
+import { Item, ItemState } from "../../../types/Item.ts";
 
 type ItemStateRateMapType = {
   [key in ItemState]: number;
