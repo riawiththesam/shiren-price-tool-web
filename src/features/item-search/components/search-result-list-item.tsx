@@ -13,6 +13,7 @@ const itemTypeToTextMap: ItemTypeToTextMap = {
   Makimono: "巻",
   Kusa: "草",
   Udewa: "腕",
+  Tsue: "杖",
 };
 
 const NoroiTypography: React.FC<{ show: boolean }> = (props) => {
