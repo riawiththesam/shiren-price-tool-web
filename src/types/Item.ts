@@ -15,5 +15,6 @@ export type ItemType = (typeof ItemTypeList)[number];
 export interface Item {
   name: string;
   buy: number;
+  sell: number;
   state: ItemState;
 }

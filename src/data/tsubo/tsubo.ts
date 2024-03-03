@@ -1,5 +1,5 @@
 import { Item } from "../../types/Item";
-import { itemStateRateMap, purchaseTypeRateMap } from "../item/item";
+import { itemStateRateMap } from "../item/item";
 import { fullList as tsuboMaster } from "./item-tsubo";
 import { PurchaseType } from "../../types/purchase";
 
@@ -15,16 +15,18 @@ export function findTsuboList(
   price: number,
   purchaseType: PurchaseType
 ): Array<Item> {
-  const noroiRate =
-    itemStateRateMap["Noroi"] * purchaseTypeRateMap[purchaseType];
   const noroiList: Array<Item> = tsuboMaster.list
-    .filter((item) => Math.floor(item.buy * noroiRate) == price)
+    .filter(
+      (item) =>
+        Math.floor(item[purchaseType] * itemStateRateMap["Noroi"]) == price
+    )
     .map((item) => ({ ...item, state: "Noroi" }));
 
-  const normalRate =
-    itemStateRateMap["Normal"] * purchaseTypeRateMap[purchaseType];
   const normalList: Array<Item> = tsuboMaster.list
-    .filter((item) => Math.floor(item.buy * normalRate) == price)
+    .filter(
+      (item) =>
+        Math.floor(item[purchaseType] * itemStateRateMap["Normal"]) == price
+    )
     .map((item) => ({ ...item, state: "Normal" }));
 
   return [...noroiList, ...normalList];
