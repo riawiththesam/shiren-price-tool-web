@@ -5,7 +5,8 @@ import { SearchResultList } from "./search-result-list.tsx";
 
 export const ItemSearch: React.FC = () => {
   const {
-    makimonoList,
+    buyMakimonoList,
+    sellMakimonoList,
     buyUdewaList,
     sellUdewaList,
     buyKusaList,
@@ -32,9 +33,14 @@ export const ItemSearch: React.FC = () => {
       />
       <Stack direction="row" spacing={2}>
         <SearchResultList
-          list={makimonoList}
+          list={buyMakimonoList}
           itemType="Makimono"
           purchaseType="buy"
+        />
+        <SearchResultList
+          list={sellMakimonoList}
+          itemType="Makimono"
+          purchaseType="sell"
         />
         <SearchResultList
           list={buyUdewaList}
