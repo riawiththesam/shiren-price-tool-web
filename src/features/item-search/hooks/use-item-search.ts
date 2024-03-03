@@ -8,7 +8,8 @@ import { findUdewaList } from "../../../data/udewa/udewa.ts";
 
 export const useItemSearch = () => {
   const [makimonoList, setMakimonoList] = useState<Array<Item>>([]);
-  const [udewaList, setUdewaList] = useState<Array<Item>>([]);
+  const [buyUdewaList, setBuyUdewaList] = useState<Array<Item>>([]);
+  const [sellUdewaList, setSellUdewaList] = useState<Array<Item>>([]);
   const [buyKusaList, setBuyKusaList] = useState<Array<Item>>([]);
   const [sellKusaList, setSellKusaList] = useState<Array<Item>>([]);
   const [buyTsueList, setBuyTsueList] = useState<Array<Item>>([]);
@@ -22,8 +23,8 @@ export const useItemSearch = () => {
     const nextMakimonoList = findMakimonoList(price);
     setMakimonoList(nextMakimonoList);
 
-    const nextUdewaList = findUdewaList(price);
-    setUdewaList(nextUdewaList);
+    setBuyUdewaList(findUdewaList(price, "buy"));
+    setSellUdewaList(findUdewaList(price, "sell"));
 
     setBuyKusaList(findKusaList(price, "buy"));
     setSellKusaList(findKusaList(price, "sell"));
@@ -37,7 +38,8 @@ export const useItemSearch = () => {
 
   return {
     makimonoList,
-    udewaList,
+    buyUdewaList,
+    sellUdewaList,
     buyKusaList,
     sellKusaList,
     buyTsueList,
