@@ -2,6 +2,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { useItemSearch } from "../hooks/use-item-search.ts";
 import { SearchResultList } from "./search-result-list.tsx";
+import { List } from "@mui/material";
 
 export const ItemSearch: React.FC = () => {
   const {
@@ -31,7 +32,14 @@ export const ItemSearch: React.FC = () => {
         variant="outlined"
         onChange={onChangeTextField}
       />
-      <Stack direction="row" spacing={2}>
+      <List
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "flex-start",
+          overflowX: "auto",
+        }}
+      >
         <SearchResultList
           list={buyMakimonoList}
           itemType="Makimono"
@@ -82,7 +90,7 @@ export const ItemSearch: React.FC = () => {
           itemType="Tsubo"
           purchaseType="sell"
         />
-      </Stack>
+      </List>
     </Stack>
   );
 };

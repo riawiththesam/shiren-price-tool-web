@@ -61,7 +61,7 @@ export const SearchResultListItem: React.FC<SearchResultListItemProps> = (
       <NoroiBox show={showNoroi} />
       <ShukufukuBox show={showShukufuku} />
       <ItemTypeBox show={showItemType} itemType={itemType} />
-      {item.name}
+      {item.name} {item.buy}
     </ListItem>
   );
 };
