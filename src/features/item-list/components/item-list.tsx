@@ -9,52 +9,51 @@ import {
   TableRow,
 } from "@mui/material";
 import { FC } from "react";
+import { useItemList } from "../hooks/use-item-list";
+import { Item } from "../../../types/Item";
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
+function createData(item: Item, itemType: string) {
+  return {
+    name: item.name,
+    itemType,
+    buy: item.buy,
+    sell: item.sell,
+    state: item.state,
+  };
 }
 
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
-
 export const ItemList: FC = () => {
+  const { rawItemList } = useItemList();
+
+  const rows = rawItemList.map((item) => {
+    return createData(item, "草");
+  });
   return (
     <Box sx={{ margin: 5 }}>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Dessert (100g serving)</TableCell>
-              <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat&nbsp;(g)</TableCell>
-              <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-              <TableCell align="right">Protein&nbsp;(g)</TableCell>
+              <TableCell>アイテム名</TableCell>
+              <TableCell align="right">種別</TableCell>
+              <TableCell align="right">購入</TableCell>
+              <TableCell align="right">売却</TableCell>
+              <TableCell align="right">状態</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {rows.map((row, index) => (
               <TableRow
-                key={row.name}
+                key={index}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell align="right">{row.itemType}</TableCell>
+                <TableCell align="right">{row.buy}</TableCell>
+                <TableCell align="right">{row.sell}</TableCell>
+                <TableCell align="right">{row.state}</TableCell>
               </TableRow>
             ))}
           </TableBody>

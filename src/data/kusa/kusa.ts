@@ -38,3 +38,22 @@ export function findKusaList(
 
   return [...noroiList, ...shukufukuList, ...normalList];
 }
+
+export function getAllKusaList(): Array<Item> {
+  const noroiList: Array<Item> = kusaMaster.list.map((item) => ({
+    ...item,
+    state: "Noroi",
+  }));
+
+  const shukufukuList: Array<Item> = kusaMaster.list.map((item) => ({
+    ...item,
+    state: "Shukufuku",
+  }));
+
+  const normalList: Array<Item> = kusaMaster.list.map((item) => ({
+    ...item,
+    state: "Normal",
+  }));
+
+  return [...noroiList, ...shukufukuList, ...normalList];
+}
