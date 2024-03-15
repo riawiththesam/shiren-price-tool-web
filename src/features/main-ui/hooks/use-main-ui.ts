@@ -1,24 +1,48 @@
 import { atom, useAtom } from "jotai";
 
-export const mainUIStateList = ["ItemSearch", "ItemList"] as const;
-export type MainUIStateType = (typeof mainUIStateList)[number];
+export const featureUIStateList = ["ItemSearch", "ItemList"] as const;
+export type FeatureUIStateType = (typeof featureUIStateList)[number];
 
-const mainUIAtom = atom<MainUIStateType>("ItemSearch");
+interface MainUIState {
+  featureUIState: FeatureUIStateType;
+  drawerOpened: boolean;
+}
+
+const mainUIAtom = atom<MainUIState>({
+  featureUIState: "ItemSearch",
+  drawerOpened: false,
+});
 
 export function useMainUI() {
   const [mainUIState, setMainUIState] = useAtom(mainUIAtom);
 
   function setItemSearch() {
-    setMainUIState("ItemSearch");
+    setMainUIState({
+      ...mainUIState,
+      featureUIState: "ItemSearch",
+      drawerOpened: false,
+    });
   }
 
   function setItemList() {
-    setMainUIState("ItemList");
+    setMainUIState({
+      ...mainUIState,
+      featureUIState: "ItemList",
+      drawerOpened: false,
+    });
+  }
+
+  function toggleDrawer() {
+    setMainUIState({
+      ...mainUIState,
+      drawerOpened: !mainUIState.drawerOpened,
+    });
   }
 
   return {
     mainUIState,
     setItemSearch,
     setItemList,
+    toggleDrawer,
   };
 }
