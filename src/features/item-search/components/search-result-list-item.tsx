@@ -1,11 +1,6 @@
 import { ListItem, Box } from "@mui/material";
 import { Item, ItemType } from "../../../types/Item";
 
-export interface SearchResultListItemProps {
-  itemType: ItemType;
-  item: Item;
-}
-
 type ItemTypeToTextMap = {
   [key in ItemType]: string;
 };
@@ -49,10 +44,14 @@ const ItemTypeBox: React.FC<{ show: boolean; itemType: ItemType }> = (
   );
 };
 
+export interface SearchResultListItemProps {
+  item: Item;
+}
+
 export const SearchResultListItem: React.FC<SearchResultListItemProps> = (
   props
 ) => {
-  const { item, itemType } = props;
+  const { item } = props;
   const showNoroi = item.state == "Noroi";
   const showShukufuku = item.state == "Shukufuku";
   const showItemType = item.state == "Normal";
@@ -60,7 +59,7 @@ export const SearchResultListItem: React.FC<SearchResultListItemProps> = (
     <ListItem>
       <NoroiBox show={showNoroi} />
       <ShukufukuBox show={showShukufuku} />
-      <ItemTypeBox show={showItemType} itemType={itemType} />
+      <ItemTypeBox show={showItemType} itemType={item.itemType} />
       {item.name} {item.buy}
     </ListItem>
   );

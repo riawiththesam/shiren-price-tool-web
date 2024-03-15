@@ -29,9 +29,7 @@ export const SearchResultList: React.FC<SearchResultListProps> = (props) => {
         }
       >
         {list.map((item, index) => {
-          return (
-            <SearchResultListItem key={index} item={item} itemType={itemType} />
-          );
+          return <SearchResultListItem key={index} item={item} />;
         })}
       </List>
     </ListItem>
