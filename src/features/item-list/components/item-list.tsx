@@ -41,26 +41,24 @@ export const ItemList: FC = () => {
         showSellItems={showSellItems}
         toggleShowSellItems={toggleShowSellItems}
       />
-      <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
-        <List>
-          {itemListState.groupedList.map((group) => {
-            const itemList = filterItemList(
-              group.itemList,
-              showBuyItems,
-              showSellItems
-            );
-            return itemList.length > 0 ? (
-              <CollapsibleListItem
-                key={group.value}
-                itemList={itemList}
-                listOpened={group.opened}
-                value={group.value}
-                onClick={toggleItemOpened}
-              />
-            ) : null;
-          })}
-        </List>
-      </Box>
+      <List sx={{ flexGrow: 1, overflowY: "auto" }}>
+        {itemListState.groupedList.map((group) => {
+          const itemList = filterItemList(
+            group.itemList,
+            showBuyItems,
+            showSellItems
+          );
+          return itemList.length > 0 ? (
+            <CollapsibleListItem
+              key={group.value}
+              itemList={itemList}
+              listOpened={group.opened}
+              value={group.value}
+              onClick={toggleItemOpened}
+            />
+          ) : null;
+        })}
+      </List>
     </Box>
   );
 };
