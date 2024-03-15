@@ -11,7 +11,7 @@ import {
 import { FC } from "react";
 import TsueIcon from "../../../assets/tsue.png";
 import MakimonoIcon from "../../../assets/makimono.png";
-import { ItemType } from "../../../types/Item";
+import { ItemState, ItemType } from "../../../types/Item";
 
 function itemTypeToIcon(itemType: ItemType): string {
   switch (itemType) {
@@ -43,12 +43,23 @@ function itemTypeToText(itemType: ItemType): string {
   }
 }
 
+function itemStateToText(itemState: ItemState): string {
+  switch (itemState) {
+    case "Normal":
+      return "";
+    case "Noroi":
+      return "呪い";
+    case "Shukufuku":
+      return "祝福";
+  }
+}
+
 interface Row {
   name: string;
   itemType: ItemType;
   buy: number;
   sell: number;
-  state: string;
+  state: ItemState;
 }
 
 export interface ItemListTableProps {
@@ -86,7 +97,7 @@ export const ItemListTable: FC<ItemListTableProps> = (props) => {
               </TableCell>
               <TableCell align="right">{row.buy}</TableCell>
               <TableCell align="right">{row.sell}</TableCell>
-              <TableCell align="right">{row.state}</TableCell>
+              <TableCell align="right">{itemStateToText(row.state)}</TableCell>
             </TableRow>
           ))}
         </TableBody>

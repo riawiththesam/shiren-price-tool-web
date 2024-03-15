@@ -9,28 +9,6 @@ import {
 import { FC } from "react";
 import { ItemWithPurchseType } from "../hooks/use-item-list";
 import { ItemListTable } from "./item-list-table";
-import { Item, ItemState } from "../../../types/Item";
-
-function itemStateToText(itemState: ItemState): string {
-  switch (itemState) {
-    case "Normal":
-      return "";
-    case "Noroi":
-      return "呪い";
-    case "Shukufuku":
-      return "祝福";
-  }
-}
-
-function createData(item: Item) {
-  return {
-    name: item.name,
-    itemType: item.itemType,
-    buy: item.buy,
-    sell: item.sell,
-    state: itemStateToText(item.state),
-  };
-}
 
 interface CollapsibleListItemProps {
   listOpened: boolean;
@@ -43,7 +21,7 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
   const { listOpened, value, itemList, onClick } = props;
 
   const rows = itemList.map((pair) => {
-    return createData(pair.item);
+    return pair.item;
   });
 
   const onClickButton = () => {
