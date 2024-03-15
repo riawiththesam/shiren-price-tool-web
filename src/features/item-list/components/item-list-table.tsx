@@ -57,6 +57,17 @@ function itemStateToText(itemState: ItemState): string {
   }
 }
 
+function itemStateToTextColor(itemState: ItemState): string {
+  switch (itemState) {
+    case "Normal":
+      return "inherit";
+    case "Noroi":
+      return "red";
+    case "Shukufuku":
+      return "blue";
+  }
+}
+
 interface Row {
   name: string;
   itemType: ItemType;
@@ -89,7 +100,11 @@ export const ItemListTable: FC<ItemListTableProps> = (props) => {
               key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{ color: itemStateToTextColor(row.state) }}
+              >
                 {row.name}
               </TableCell>
               <TableCell align="right">
