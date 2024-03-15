@@ -1,4 +1,4 @@
-import { Box, List } from "@mui/material";
+import { Box, Divider, List } from "@mui/material";
 import { FC } from "react";
 import { ItemWithPurchseType, useItemList } from "../hooks/use-item-list";
 import { CollapsibleListItem } from "./collapsible-list-item";
@@ -41,7 +41,8 @@ export const ItemList: FC = () => {
         showSellItems={showSellItems}
         toggleShowSellItems={toggleShowSellItems}
       />
-      <List sx={{ flexGrow: 1, overflowY: "auto" }}>
+      <Divider />
+      <List sx={{ paddingX: "20px", flexGrow: 1, overflowY: "auto" }}>
         {itemListState.groupedList.map((group) => {
           const itemList = filterItemList(
             group.itemList,
