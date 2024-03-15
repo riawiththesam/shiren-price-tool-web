@@ -12,6 +12,10 @@ export interface ItemFilter {
   showBuyItems: boolean;
   showSellItems: boolean;
   showKusaItems: boolean;
+  showMakimonoItems: boolean;
+  showTsuboItems: boolean;
+  showTsueItems: boolean;
+  showUdewaItems: boolean;
 }
 
 export interface ItemWithPurchseType {
@@ -85,6 +89,10 @@ export const useItemList = () => {
     showBuyItems: true,
     showSellItems: true,
     showKusaItems: true,
+    showMakimonoItems: true,
+    showTsuboItems: true,
+    showTsueItems: true,
+    showUdewaItems: true,
   });
 
   function toggleItemOpened(value: string) {
@@ -112,12 +120,32 @@ export const useItemList = () => {
     setFilter({ ...filter, showKusaItems: !filter.showKusaItems });
   }
 
+  function toggleShowMakimonoItems() {
+    setFilter({ ...filter, showMakimonoItems: !filter.showMakimonoItems });
+  }
+
+  function toggleShowTsuboItems() {
+    setFilter({ ...filter, showTsuboItems: !filter.showTsuboItems });
+  }
+
+  function toggleShowTsueItems() {
+    setFilter({ ...filter, showTsueItems: !filter.showTsueItems });
+  }
+
+  function toggleShowUdewaItems() {
+    setFilter({ ...filter, showUdewaItems: !filter.showUdewaItems });
+  }
+
   return {
     itemListState,
     toggleItemOpened,
     toggleShowBuyItems,
     toggleShowSellItems,
     toggleShowKusaItems,
+    toggleShowMakimonoItems,
+    toggleShowTsuboItems,
+    toggleShowTsueItems,
+    toggleShowUdewaItems,
     filter,
   };
 };

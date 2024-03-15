@@ -6,6 +6,10 @@ export interface ItemListSubheaderProps {
   toggleShowBuyItems: () => void;
   toggleShowSellItems: () => void;
   toggleShowKusaItems: () => void;
+  toggleShowMakimonoItems: () => void;
+  toggleShowTsuboItems: () => void;
+  toggleShowTsueItems: () => void;
+  toggleShowUdewaItems: () => void;
   filter: ItemFilter;
 }
 
@@ -14,6 +18,10 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
     toggleShowBuyItems,
     toggleShowSellItems,
     toggleShowKusaItems,
+    toggleShowMakimonoItems,
+    toggleShowTsuboItems,
+    toggleShowTsueItems,
+    toggleShowUdewaItems,
     filter,
   } = props;
 
@@ -40,6 +48,34 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
         <Checkbox
           checked={filter.showKusaItems}
           onClick={toggleShowKusaItems}
+        />
+      </Box>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        巻
+        <Checkbox
+          checked={filter.showMakimonoItems}
+          onClick={toggleShowMakimonoItems}
+        />
+      </Box>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        壺
+        <Checkbox
+          checked={filter.showTsuboItems}
+          onClick={toggleShowTsuboItems}
+        />
+      </Box>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        杖
+        <Checkbox
+          checked={filter.showTsueItems}
+          onClick={toggleShowTsueItems}
+        />
+      </Box>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        腕
+        <Checkbox
+          checked={filter.showUdewaItems}
+          onClick={toggleShowUdewaItems}
         />
       </Box>
     </Stack>

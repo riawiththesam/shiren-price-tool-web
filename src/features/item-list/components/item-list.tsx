@@ -28,6 +28,28 @@ function filterItemList(
     filteredList = filteredList.filter((pair) => pair.item.itemType != "Kusa");
   }
 
+  // 巻物
+  if (!filter.showMakimonoItems) {
+    filteredList = filteredList.filter(
+      (pair) => pair.item.itemType != "Makimono"
+    );
+  }
+
+  // 壺
+  if (!filter.showTsuboItems) {
+    filteredList = filteredList.filter((pair) => pair.item.itemType != "Tsubo");
+  }
+
+  // 杖
+  if (!filter.showTsueItems) {
+    filteredList = filteredList.filter((pair) => pair.item.itemType != "Tsue");
+  }
+
+  // 腕輪
+  if (!filter.showUdewaItems) {
+    filteredList = filteredList.filter((pair) => pair.item.itemType != "Udewa");
+  }
+
   return filteredList;
 }
 
@@ -38,6 +60,10 @@ export const ItemList: FC = () => {
     toggleShowBuyItems,
     toggleShowSellItems,
     toggleShowKusaItems,
+    toggleShowMakimonoItems,
+    toggleShowTsuboItems,
+    toggleShowTsueItems,
+    toggleShowUdewaItems,
     filter,
   } = useItemList();
 
@@ -47,6 +73,10 @@ export const ItemList: FC = () => {
         toggleShowBuyItems={toggleShowBuyItems}
         toggleShowSellItems={toggleShowSellItems}
         toggleShowKusaItems={toggleShowKusaItems}
+        toggleShowMakimonoItems={toggleShowMakimonoItems}
+        toggleShowTsuboItems={toggleShowTsuboItems}
+        toggleShowTsueItems={toggleShowTsueItems}
+        toggleShowUdewaItems={toggleShowUdewaItems}
         filter={filter}
       />
       <Divider />
