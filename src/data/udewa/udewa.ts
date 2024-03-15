@@ -25,3 +25,15 @@ export function findUdewaList(
 
   return [...noroiList, ...normalList];
 }
+
+export function getAllUdewaList() {
+  const noroiList: Array<Item> = udewaMaster.list.map((item) =>
+    mapToNoroi(item, "Udewa")
+  );
+
+  const normalList: Array<Item> = udewaMaster.list.map((item) =>
+    mapToNormal(item, "Udewa")
+  );
+
+  return [...noroiList, ...normalList];
+}

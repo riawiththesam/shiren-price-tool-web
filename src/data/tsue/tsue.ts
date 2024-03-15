@@ -25,3 +25,15 @@ export function findTsueList(
 
   return [...noroiList, ...normalList];
 }
+
+export function getAllTsueList() {
+  const noroiList: Array<Item> = tsueMaster.list.map((item) =>
+    mapToNoroi(item, "Tsue")
+  );
+
+  const normalList: Array<Item> = tsueMaster.list.map((item) =>
+    mapToNormal(item, "Tsue")
+  );
+
+  return [...noroiList, ...normalList];
+}

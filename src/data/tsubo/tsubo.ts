@@ -25,3 +25,15 @@ export function findTsuboList(
 
   return [...noroiList, ...normalList];
 }
+
+export function getAllTsuboList(): Array<Item> {
+  const noroiList: Array<Item> = tsuboMaster.list.map((item) =>
+    mapToNoroi(item, "Tsubo")
+  );
+
+  const normalList: Array<Item> = tsuboMaster.list.map((item) =>
+    mapToNormal(item, "Tsubo")
+  );
+
+  return [...noroiList, ...normalList];
+}
