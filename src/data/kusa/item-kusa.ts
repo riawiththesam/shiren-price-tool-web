@@ -13,7 +13,7 @@ export const list = {
     {
       name: "弟切草",
       buy: 80,
-      sell: 20,
+      sell: 30,
     },
     {
       name: "いやし草",
