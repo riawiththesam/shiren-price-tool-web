@@ -1,6 +1,6 @@
 import { Item } from "../../types/Item";
 import { PurchaseType } from "../../types/purchase";
-import { itemStateRateMap } from "../item/item";
+import { mapToNormal, mapToNoroi } from "../item/item";
 import { list as udewaMaster } from "./item-udewa";
 
 /**
@@ -16,18 +16,12 @@ export function findUdewaList(
   purchaseType: PurchaseType
 ): Array<Item> {
   const noroiList: Array<Item> = udewaMaster.list
-    .filter(
-      (item) =>
-        Math.floor(item[purchaseType] * itemStateRateMap["Noroi"]) == price
-    )
-    .map((item) => ({ ...item, state: "Noroi" }));
+    .map(mapToNoroi)
+    .filter((item) => item[purchaseType] == price);
 
   const normalList: Array<Item> = udewaMaster.list
-    .filter(
-      (item) =>
-        Math.floor(item[purchaseType] * itemStateRateMap["Normal"]) == price
-    )
-    .map((item) => ({ ...item, state: "Normal" }));
+    .map(mapToNormal)
+    .filter((item) => item[purchaseType] == price);
 
   return [...noroiList, ...normalList];
 }

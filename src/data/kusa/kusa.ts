@@ -1,6 +1,6 @@
 import { Item } from "../../types/Item";
 import { PurchaseType } from "../../types/purchase";
-import { itemStateRateMap } from "../item/item";
+import { mapToNormal, mapToNoroi, mapToShukufuku } from "../item/item";
 import { list as kusaMaster } from "./item-kusa";
 
 /**
@@ -16,44 +16,26 @@ export function findKusaList(
   purchaseType: PurchaseType
 ): Array<Item> {
   const noroiList: Array<Item> = kusaMaster.list
-    .filter(
-      (item) =>
-        Math.floor(item[purchaseType] * itemStateRateMap["Noroi"]) == price
-    )
-    .map((item) => ({ ...item, state: "Noroi" }));
+    .map(mapToNoroi)
+    .filter((item) => item[purchaseType] == price);
 
   const shukufukuList: Array<Item> = kusaMaster.list
-    .filter(
-      (item) =>
-        Math.floor(item[purchaseType] * itemStateRateMap["Shukufuku"]) == price
-    )
-    .map((item) => ({ ...item, state: "Shukufuku" }));
+    .map(mapToShukufuku)
+    .filter((item) => item[purchaseType] == price);
 
   const normalList: Array<Item> = kusaMaster.list
-    .filter(
-      (item) =>
-        Math.floor(item[purchaseType] * itemStateRateMap["Normal"]) == price
-    )
-    .map((item) => ({ ...item, state: "Normal" }));
+    .map(mapToNormal)
+    .filter((item) => item[purchaseType] == price);
 
   return [...noroiList, ...shukufukuList, ...normalList];
 }
 
 export function getAllKusaList(): Array<Item> {
-  const noroiList: Array<Item> = kusaMaster.list.map((item) => ({
-    ...item,
-    state: "Noroi",
-  }));
+  const noroiList: Array<Item> = kusaMaster.list.map(mapToNoroi);
 
-  const shukufukuList: Array<Item> = kusaMaster.list.map((item) => ({
-    ...item,
-    state: "Shukufuku",
-  }));
+  const shukufukuList: Array<Item> = kusaMaster.list.map(mapToShukufuku);
 
-  const normalList: Array<Item> = kusaMaster.list.map((item) => ({
-    ...item,
-    state: "Normal",
-  }));
+  const normalList: Array<Item> = kusaMaster.list.map(mapToNormal);
 
   return [...noroiList, ...shukufukuList, ...normalList];
 }

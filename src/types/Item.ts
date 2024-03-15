@@ -14,7 +14,15 @@ export type ItemType = (typeof ItemTypeList)[number];
 
 export interface Item {
   name: string;
+  defaultBuy: number;
+  defaultSell: number;
   buy: number;
   sell: number;
   state: ItemState;
+}
+
+export interface MasterItem {
+  name: string;
+  buy: number;
+  sell: number;
 }
