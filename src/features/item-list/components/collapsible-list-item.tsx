@@ -9,7 +9,7 @@ import {
 import { FC } from "react";
 import { ItemWithPurchseType } from "../hooks/use-item-list";
 import { ItemListTable } from "./item-list-table";
-import { Item, ItemType } from "../../../types/Item";
+import { Item, ItemState, ItemType } from "../../../types/Item";
 
 function itemTypeToText(itemType: ItemType): string {
   switch (itemType) {
@@ -26,13 +26,24 @@ function itemTypeToText(itemType: ItemType): string {
   }
 }
 
+function itemStateToText(itemState: ItemState): string {
+  switch (itemState) {
+    case "Normal":
+      return "";
+    case "Noroi":
+      return "呪い";
+    case "Shukufuku":
+      return "祝福";
+  }
+}
+
 function createData(item: Item) {
   return {
     name: item.name,
     itemType: itemTypeToText(item.itemType),
     buy: item.buy,
     sell: item.sell,
-    state: item.state,
+    state: itemStateToText(item.state),
   };
 }
 
