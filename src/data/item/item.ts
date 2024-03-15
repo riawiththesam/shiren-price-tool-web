@@ -1,4 +1,4 @@
-import { Item, ItemState, MasterItem } from "../../types/Item";
+import { Item, ItemState, MasterItem, ItemType } from "../../types/Item";
 
 type ItemStateRateMapType = {
   [key in ItemState]: number;
@@ -10,7 +10,7 @@ export const itemStateRateMap: ItemStateRateMapType = {
   Shukufuku: 2,
 };
 
-export function mapToNoroi(master: MasterItem): Item {
+export function mapToNoroi(master: MasterItem, itemType: ItemType): Item {
   return {
     name: master.name,
     defaultBuy: master.buy,
@@ -18,10 +18,11 @@ export function mapToNoroi(master: MasterItem): Item {
     buy: Math.floor(master.buy * itemStateRateMap["Noroi"]),
     sell: Math.floor(master.sell * itemStateRateMap["Noroi"]),
     state: "Noroi",
+    itemType,
   };
 }
 
-export function mapToShukufuku(master: MasterItem): Item {
+export function mapToShukufuku(master: MasterItem, itemType: ItemType): Item {
   return {
     name: master.name,
     defaultBuy: master.buy,
@@ -29,10 +30,11 @@ export function mapToShukufuku(master: MasterItem): Item {
     buy: Math.floor(master.buy * itemStateRateMap["Shukufuku"]),
     sell: Math.floor(master.sell * itemStateRateMap["Shukufuku"]),
     state: "Shukufuku",
+    itemType,
   };
 }
 
-export function mapToNormal(master: MasterItem): Item {
+export function mapToNormal(master: MasterItem, itemType: ItemType): Item {
   return {
     name: master.name,
     defaultBuy: master.buy,
@@ -40,5 +42,6 @@ export function mapToNormal(master: MasterItem): Item {
     buy: Math.floor(master.buy * itemStateRateMap["Normal"]),
     sell: Math.floor(master.sell * itemStateRateMap["Normal"]),
     state: "Normal",
+    itemType,
   };
 }

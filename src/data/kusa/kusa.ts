@@ -16,26 +16,32 @@ export function findKusaList(
   purchaseType: PurchaseType
 ): Array<Item> {
   const noroiList: Array<Item> = kusaMaster.list
-    .map(mapToNoroi)
+    .map((item) => mapToNoroi(item, "Kusa"))
     .filter((item) => item[purchaseType] == price);
 
   const shukufukuList: Array<Item> = kusaMaster.list
-    .map(mapToShukufuku)
+    .map((item) => mapToShukufuku(item, "Kusa"))
     .filter((item) => item[purchaseType] == price);
 
   const normalList: Array<Item> = kusaMaster.list
-    .map(mapToNormal)
+    .map((item) => mapToNormal(item, "Kusa"))
     .filter((item) => item[purchaseType] == price);
 
   return [...noroiList, ...shukufukuList, ...normalList];
 }
 
 export function getAllKusaList(): Array<Item> {
-  const noroiList: Array<Item> = kusaMaster.list.map(mapToNoroi);
+  const noroiList: Array<Item> = kusaMaster.list.map((item) =>
+    mapToNoroi(item, "Kusa")
+  );
 
-  const shukufukuList: Array<Item> = kusaMaster.list.map(mapToShukufuku);
+  const shukufukuList: Array<Item> = kusaMaster.list.map((item) =>
+    mapToShukufuku(item, "Kusa")
+  );
 
-  const normalList: Array<Item> = kusaMaster.list.map(mapToNormal);
+  const normalList: Array<Item> = kusaMaster.list.map((item) =>
+    mapToNormal(item, "Kusa")
+  );
 
   return [...noroiList, ...shukufukuList, ...normalList];
 }

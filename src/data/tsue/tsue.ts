@@ -16,11 +16,11 @@ export function findTsueList(
   purchaseType: PurchaseType
 ): Array<Item> {
   const noroiList: Array<Item> = tsueMaster.list
-    .map(mapToNoroi)
+    .map((item) => mapToNoroi(item, "Tsue"))
     .filter((item) => item[purchaseType] == price);
 
   const normalList: Array<Item> = tsueMaster.list
-    .map(mapToNormal)
+    .map((item) => mapToNormal(item, "Tsue"))
     .filter((item) => item[purchaseType] == price);
 
   return [...noroiList, ...normalList];

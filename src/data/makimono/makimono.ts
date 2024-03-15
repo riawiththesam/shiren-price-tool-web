@@ -16,16 +16,32 @@ export function findMakimonoList(
   purchaseType: PurchaseType
 ): Array<Item> {
   const noroiList: Array<Item> = makimonoMaster.list
-    .map(mapToNoroi)
+    .map((item) => mapToNoroi(item, "Makimono"))
     .filter((item) => item[purchaseType] == price);
 
   const shukufukuList: Array<Item> = makimonoMaster.list
-    .map(mapToShukufuku)
+    .map((item) => mapToShukufuku(item, "Makimono"))
     .filter((item) => item[purchaseType] == price);
 
   const normalList: Array<Item> = makimonoMaster.list
-    .map(mapToNormal)
+    .map((item) => mapToNormal(item, "Makimono"))
     .filter((item) => item[purchaseType] == price);
+
+  return [...noroiList, ...shukufukuList, ...normalList];
+}
+
+export function getAllMakimonoList(): Array<Item> {
+  const noroiList: Array<Item> = makimonoMaster.list.map((item) =>
+    mapToNoroi(item, "Makimono")
+  );
+
+  const shukufukuList: Array<Item> = makimonoMaster.list.map((item) =>
+    mapToShukufuku(item, "Makimono")
+  );
+
+  const normalList: Array<Item> = makimonoMaster.list.map((item) =>
+    mapToNormal(item, "Makimono")
+  );
 
   return [...noroiList, ...shukufukuList, ...normalList];
 }

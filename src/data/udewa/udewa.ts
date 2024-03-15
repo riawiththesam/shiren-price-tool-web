@@ -16,11 +16,11 @@ export function findUdewaList(
   purchaseType: PurchaseType
 ): Array<Item> {
   const noroiList: Array<Item> = udewaMaster.list
-    .map(mapToNoroi)
+    .map((item) => mapToNoroi(item, "Udewa"))
     .filter((item) => item[purchaseType] == price);
 
   const normalList: Array<Item> = udewaMaster.list
-    .map(mapToNormal)
+    .map((item) => mapToNormal(item, "Udewa"))
     .filter((item) => item[purchaseType] == price);
 
   return [...noroiList, ...normalList];

@@ -19,6 +19,7 @@ export interface Item {
   buy: number;
   sell: number;
   state: ItemState;
+  itemType: ItemType;
 }
 
 export interface MasterItem {
