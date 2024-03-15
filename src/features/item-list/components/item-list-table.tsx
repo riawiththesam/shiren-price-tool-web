@@ -9,8 +9,9 @@ import {
   TableRow,
 } from "@mui/material";
 import { FC } from "react";
-import TsueIcon from "../../../assets/tsue.png";
 import MakimonoIcon from "../../../assets/makimono.png";
+import KusaIcon from "../../../assets/kusa.png";
+import TsueIcon from "../../../assets/tsue.png";
 import { ItemState, ItemType } from "../../../types/Item";
 
 function itemTypeToIcon(itemType: ItemType): string {
@@ -18,7 +19,7 @@ function itemTypeToIcon(itemType: ItemType): string {
     case "Makimono":
       return MakimonoIcon;
     case "Kusa":
-      return TsueIcon;
+      return KusaIcon;
     case "Udewa":
       return TsueIcon;
     case "Tsue":
