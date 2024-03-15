@@ -33,14 +33,19 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
     >
       <Box>金額</Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        購入
-        <Checkbox checked={filter.showBuyItems} onClick={toggleShowBuyItems} />
+        買
+        <Checkbox
+          checked={filter.showBuyItems}
+          onClick={toggleShowBuyItems}
+          sx={{ paddingLeft: "0" }}
+        />
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        売却
+        売
         <Checkbox
           checked={filter.showSellItems}
           onClick={toggleShowSellItems}
+          sx={{ paddingLeft: "0" }}
         />
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -48,6 +53,7 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
         <Checkbox
           checked={filter.showKusaItems}
           onClick={toggleShowKusaItems}
+          sx={{ paddingLeft: "0" }}
         />
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -55,6 +61,7 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
         <Checkbox
           checked={filter.showMakimonoItems}
           onClick={toggleShowMakimonoItems}
+          sx={{ paddingLeft: "0" }}
         />
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -62,6 +69,7 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
         <Checkbox
           checked={filter.showTsuboItems}
           onClick={toggleShowTsuboItems}
+          sx={{ paddingLeft: "0" }}
         />
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -69,6 +77,7 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
         <Checkbox
           checked={filter.showTsueItems}
           onClick={toggleShowTsueItems}
+          sx={{ paddingLeft: "0" }}
         />
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -76,6 +85,7 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
         <Checkbox
           checked={filter.showUdewaItems}
           onClick={toggleShowUdewaItems}
+          sx={{ paddingLeft: "0" }}
         />
       </Box>
     </Stack>
