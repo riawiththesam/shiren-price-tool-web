@@ -1,4 +1,5 @@
 import {
+  Box,
   Paper,
   Table,
   TableBody,
@@ -8,6 +9,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { FC } from "react";
+import TsueIcon from "../../../assets/tsue.png";
 
 interface Row {
   name: string;
@@ -44,7 +46,12 @@ export const ItemListTable: FC<ItemListTableProps> = (props) => {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.itemType}</TableCell>
+              <TableCell align="right">
+                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                  <img src={TsueIcon} />
+                  {row.itemType}
+                </Box>
+              </TableCell>
               <TableCell align="right">{row.buy}</TableCell>
               <TableCell align="right">{row.sell}</TableCell>
               <TableCell align="right">{row.state}</TableCell>
