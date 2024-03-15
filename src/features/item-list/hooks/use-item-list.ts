@@ -21,7 +21,10 @@ interface ItemListState {
   }>;
 }
 
-export const useItemList = () => {
+function getFullGroupedList(): Array<{
+  value: string;
+  itemList: ItemWithPurchseType[];
+}> {
   const rawItemList: Array<Item> = [];
   rawItemList.push(...getAllKusaList());
   rawItemList.push(...getAllMakimonoList());
@@ -46,6 +49,7 @@ export const useItemList = () => {
     };
   });
   const itemWithPurchseTypeList = [...buyItemList, ...sellItemList];
+
   const grouped = groupBy(
     itemWithPurchseTypeList,
     (pair) => pair.item[pair.purchaseType]
@@ -57,8 +61,12 @@ export const useItemList = () => {
     };
   });
 
+  return groupedList;
+}
+
+export const useItemList = () => {
   const [itemListState, setItemListState] = useState<ItemListState>({
-    groupedList: groupedList.map((group) => {
+    groupedList: getFullGroupedList().map((group) => {
       return {
         value: group.value,
         itemList: group.itemList,
