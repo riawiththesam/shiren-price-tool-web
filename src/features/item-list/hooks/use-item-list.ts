@@ -8,6 +8,12 @@ import { Item } from "../../../types/Item";
 import { PurchaseType } from "../../../types/purchase";
 import { useState } from "react";
 
+export interface ItemFilter {
+  showBuyItems: boolean;
+  showSellItems: boolean;
+  showKusaItems: boolean;
+}
+
 export interface ItemWithPurchseType {
   purchaseType: PurchaseType;
   item: Item;
@@ -75,8 +81,11 @@ export const useItemList = () => {
     }),
   });
 
-  const [showBuyItems, setShowBuyItems] = useState(true);
-  const [showSellItems, setShowSellItems] = useState(true);
+  const [filter, setFilter] = useState<ItemFilter>({
+    showBuyItems: true,
+    showSellItems: true,
+    showKusaItems: true,
+  });
 
   function toggleItemOpened(value: string) {
     const next = itemListState.groupedList.map((group) => {
@@ -92,19 +101,23 @@ export const useItemList = () => {
   }
 
   function toggleShowBuyItems() {
-    setShowBuyItems(!showBuyItems);
+    setFilter({ ...filter, showBuyItems: !filter.showBuyItems });
   }
 
   function toggleShowSellItems() {
-    setShowSellItems(!showSellItems);
+    setFilter({ ...filter, showSellItems: !filter.showSellItems });
+  }
+
+  function toggleShowKusaItems() {
+    setFilter({ ...filter, showKusaItems: !filter.showKusaItems });
   }
 
   return {
     itemListState,
     toggleItemOpened,
-    showBuyItems,
     toggleShowBuyItems,
-    showSellItems,
     toggleShowSellItems,
+    toggleShowKusaItems,
+    filter,
   };
 };
