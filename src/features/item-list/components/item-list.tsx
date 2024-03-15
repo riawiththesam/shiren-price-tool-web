@@ -1,7 +1,8 @@
-import { Box, Checkbox, List, Stack } from "@mui/material";
+import { Box, List } from "@mui/material";
 import { FC } from "react";
 import { ItemWithPurchseType, useItemList } from "../hooks/use-item-list";
 import { CollapsibleListItem } from "./collapsible-list-item";
+import { ItemListFilter } from "./item-list-filter";
 
 function filterItemList(
   itemList: Array<ItemWithPurchseType>,
@@ -34,21 +35,12 @@ export const ItemList: FC = () => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
-      <Stack
-        direction="row"
-        spacing={3}
-        sx={{ paddingX: "40px", alignItems: "center" }}
-      >
-        <Box>金額</Box>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          購入
-          <Checkbox checked={showBuyItems} onClick={toggleShowBuyItems} />
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          売却
-          <Checkbox checked={showSellItems} onClick={toggleShowSellItems} />
-        </Box>
-      </Stack>
+      <ItemListFilter
+        showBuyItems={showBuyItems}
+        toggleShowBuyItems={toggleShowBuyItems}
+        showSellItems={showSellItems}
+        toggleShowSellItems={toggleShowSellItems}
+      />
       <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
         <List>
           {itemListState.groupedList.map((group) => {
