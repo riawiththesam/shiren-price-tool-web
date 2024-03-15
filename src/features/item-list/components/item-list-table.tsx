@@ -13,6 +13,7 @@ import MakimonoIcon from "../../../assets/makimono.png";
 import KusaIcon from "../../../assets/kusa.png";
 import TsueIcon from "../../../assets/tsue.png";
 import UdewaIcon from "../../../assets/udewa.png";
+import TsuboIcon from "../../../assets/tsubo.png";
 import { ItemState, ItemType } from "../../../types/Item";
 
 function itemTypeToIcon(itemType: ItemType): string {
@@ -26,7 +27,7 @@ function itemTypeToIcon(itemType: ItemType): string {
     case "Tsue":
       return TsueIcon;
     case "Tsubo":
-      return TsueIcon;
+      return TsuboIcon;
   }
 }
 
