@@ -25,7 +25,7 @@ export const ItemSearch: React.FC = () => {
   };
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} sx={{ margin: 5 }}>
       <TextField
         id="outlined-basic"
         label="金額を入力"
