@@ -9,22 +9,7 @@ import {
 import { FC } from "react";
 import { ItemWithPurchseType } from "../hooks/use-item-list";
 import { ItemListTable } from "./item-list-table";
-import { Item, ItemState, ItemType } from "../../../types/Item";
-
-function itemTypeToText(itemType: ItemType): string {
-  switch (itemType) {
-    case "Makimono":
-      return "巻物";
-    case "Kusa":
-      return "草";
-    case "Udewa":
-      return "腕輪";
-    case "Tsue":
-      return "杖";
-    case "Tsubo":
-      return "壺";
-  }
-}
+import { Item, ItemState } from "../../../types/Item";
 
 function itemStateToText(itemState: ItemState): string {
   switch (itemState) {
@@ -40,7 +25,7 @@ function itemStateToText(itemState: ItemState): string {
 function createData(item: Item) {
   return {
     name: item.name,
-    itemType: itemTypeToText(item.itemType),
+    itemType: item.itemType,
     buy: item.buy,
     sell: item.sell,
     state: itemStateToText(item.state),

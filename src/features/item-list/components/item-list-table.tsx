@@ -10,10 +10,42 @@ import {
 } from "@mui/material";
 import { FC } from "react";
 import TsueIcon from "../../../assets/tsue.png";
+import MakimonoIcon from "../../../assets/makimono.png";
+import { ItemType } from "../../../types/Item";
+
+function itemTypeToIcon(itemType: ItemType): string {
+  switch (itemType) {
+    case "Makimono":
+      return MakimonoIcon;
+    case "Kusa":
+      return TsueIcon;
+    case "Udewa":
+      return TsueIcon;
+    case "Tsue":
+      return TsueIcon;
+    case "Tsubo":
+      return TsueIcon;
+  }
+}
+
+function itemTypeToText(itemType: ItemType): string {
+  switch (itemType) {
+    case "Makimono":
+      return "巻物";
+    case "Kusa":
+      return "草";
+    case "Udewa":
+      return "腕輪";
+    case "Tsue":
+      return "杖";
+    case "Tsubo":
+      return "壺";
+  }
+}
 
 interface Row {
   name: string;
-  itemType: string;
+  itemType: ItemType;
   buy: number;
   sell: number;
   state: string;
@@ -48,8 +80,8 @@ export const ItemListTable: FC<ItemListTableProps> = (props) => {
               </TableCell>
               <TableCell align="right">
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                  <img src={TsueIcon} />
-                  {row.itemType}
+                  <img src={itemTypeToIcon(row.itemType)} />
+                  {itemTypeToText(row.itemType)}
                 </Box>
               </TableCell>
               <TableCell align="right">{row.buy}</TableCell>
