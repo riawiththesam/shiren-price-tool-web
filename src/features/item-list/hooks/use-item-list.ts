@@ -75,6 +75,9 @@ export const useItemList = () => {
     }),
   });
 
+  const [showBuyItems, setShowBuyItems] = useState(true);
+  const [showSellItems, setShowSellItems] = useState(true);
+
   function toggleItemOpened(value: string) {
     const next = itemListState.groupedList.map((group) => {
       return {
@@ -88,8 +91,20 @@ export const useItemList = () => {
     });
   }
 
+  function toggleShowBuyItems() {
+    setShowBuyItems(!showBuyItems);
+  }
+
+  function toggleShowSellItems() {
+    setShowSellItems(!showSellItems);
+  }
+
   return {
     itemListState,
     toggleItemOpened,
+    showBuyItems,
+    toggleShowBuyItems,
+    showSellItems,
+    toggleShowSellItems,
   };
 };
