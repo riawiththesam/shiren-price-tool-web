@@ -60,7 +60,7 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
         <ListItemText primary={value} />
         {listOpened ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      <Collapse in={listOpened} timeout="auto" unmountOnExit>
+      <Collapse in={listOpened} timeout={200} unmountOnExit>
         <List component="div" disablePadding>
           <ListItemButton sx={{ pl: 4 }}>
             <ItemListTable rows={rows} />

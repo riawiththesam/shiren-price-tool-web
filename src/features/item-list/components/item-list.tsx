@@ -9,7 +9,7 @@ export const ItemList: FC = () => {
   return (
     <Box sx={{ margin: 5, maxWidth: 800 }}>
       <List
-        sx={{ width: "100%", bgcolor: "background.paper" }}
+        sx={{ width: "100%" }}
         aria-labelledby="nested-list-subheader"
         subheader={
           <ListSubheader component="div" id="nested-list-subheader">
