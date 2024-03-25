@@ -19,7 +19,7 @@ export interface ShirenDrawerProps {
 
 export const ShirenDrawer: FC<ShirenDrawerProps> = (props) => {
   const { opened, onClickClose } = props;
-  const { setItemList, setItemSearch } = useMainUI();
+  const { setItemList, setItemSearch, setBoyoyonKabe } = useMainUI();
 
   return (
     <Drawer anchor="left" open={opened}>
@@ -30,14 +30,19 @@ export const ShirenDrawer: FC<ShirenDrawerProps> = (props) => {
       </Toolbar>
       <Divider />
       <List>
+        <ListItem disablePadding onClick={setItemList}>
+          <ListItemButton>
+            <ListItemText primary={"値段表"} />
+          </ListItemButton>
+        </ListItem>
         <ListItem disablePadding onClick={setItemSearch}>
           <ListItemButton>
             <ListItemText primary={"識別ツール"} />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding onClick={setItemList}>
+        <ListItem disablePadding onClick={setBoyoyonKabe}>
           <ListItemButton>
-            <ListItemText primary={"値段表"} />
+            <ListItemText primary={"ボヨヨン壁ツール"} />
           </ListItemButton>
         </ListItem>
       </List>

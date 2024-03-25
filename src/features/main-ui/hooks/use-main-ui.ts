@@ -1,6 +1,10 @@
 import { atom, useAtom } from "jotai";
 
-export const featureUIStateList = ["ItemSearch", "ItemList"] as const;
+export const featureUIStateList = [
+  "ItemSearch",
+  "ItemList",
+  "BoyoyonKabeCheck",
+] as const;
 export type FeatureUIStateType = (typeof featureUIStateList)[number];
 
 interface MainUIState {
@@ -32,6 +36,14 @@ export function useMainUI() {
     });
   }
 
+  function setBoyoyonKabe() {
+    setMainUIState({
+      ...mainUIState,
+      featureUIState: "BoyoyonKabeCheck",
+      drawerOpened: false,
+    });
+  }
+
   function toggleDrawer() {
     setMainUIState({
       ...mainUIState,
@@ -43,6 +55,7 @@ export function useMainUI() {
     mainUIState,
     setItemSearch,
     setItemList,
+    setBoyoyonKabe,
     toggleDrawer,
   };
 }
