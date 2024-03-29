@@ -4,18 +4,15 @@ import { getAllMakimonoList } from "../../../data/makimono/makimono";
 import { getAllTsuboList } from "../../../data/tsubo/tsubo";
 import { getAllTsueList } from "../../../data/tsue/tsue";
 import { getAllUdewaList } from "../../../data/udewa/udewa";
-import { Item } from "../../../types/Item";
+import { Item, ItemType } from "../../../types/Item";
 import { PurchaseType } from "../../../types/purchase";
 import { useState } from "react";
 
+export type ShowBuyOrSellItems = "buy" | "sell";
+
 export interface ItemFilter {
-  showBuyItems: boolean;
-  showSellItems: boolean;
-  showKusaItems: boolean;
-  showMakimonoItems: boolean;
-  showTsuboItems: boolean;
-  showTsueItems: boolean;
-  showUdewaItems: boolean;
+  showBuyOrSellItems: ShowBuyOrSellItems;
+  showItemType: ItemType;
 }
 
 export interface ItemWithPurchseType {
@@ -86,13 +83,8 @@ export const useItemList = () => {
   });
 
   const [filter, setFilter] = useState<ItemFilter>({
-    showBuyItems: true,
-    showSellItems: true,
-    showKusaItems: true,
-    showMakimonoItems: true,
-    showTsuboItems: true,
-    showTsueItems: true,
-    showUdewaItems: true,
+    showBuyOrSellItems: "buy",
+    showItemType: "Kusa",
   });
 
   function toggleItemOpened(value: string) {
@@ -108,44 +100,19 @@ export const useItemList = () => {
     });
   }
 
-  function toggleShowBuyItems() {
-    setFilter({ ...filter, showBuyItems: !filter.showBuyItems });
+  function setPurchaseType(purchaseType: PurchaseType) {
+    setFilter({ ...filter, showBuyOrSellItems: purchaseType });
   }
 
-  function toggleShowSellItems() {
-    setFilter({ ...filter, showSellItems: !filter.showSellItems });
-  }
-
-  function toggleShowKusaItems() {
-    setFilter({ ...filter, showKusaItems: !filter.showKusaItems });
-  }
-
-  function toggleShowMakimonoItems() {
-    setFilter({ ...filter, showMakimonoItems: !filter.showMakimonoItems });
-  }
-
-  function toggleShowTsuboItems() {
-    setFilter({ ...filter, showTsuboItems: !filter.showTsuboItems });
-  }
-
-  function toggleShowTsueItems() {
-    setFilter({ ...filter, showTsueItems: !filter.showTsueItems });
-  }
-
-  function toggleShowUdewaItems() {
-    setFilter({ ...filter, showUdewaItems: !filter.showUdewaItems });
+  function setItemType(itemType: ItemType) {
+    setFilter({ ...filter, showItemType: itemType });
   }
 
   return {
     itemListState,
+    setPurchaseType,
+    setItemType,
     toggleItemOpened,
-    toggleShowBuyItems,
-    toggleShowSellItems,
-    toggleShowKusaItems,
-    toggleShowMakimonoItems,
-    toggleShowTsuboItems,
-    toggleShowTsueItems,
-    toggleShowUdewaItems,
     filter,
   };
 };

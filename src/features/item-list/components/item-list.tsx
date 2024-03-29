@@ -15,38 +15,38 @@ function filterItemList(
   let filteredList = itemList;
 
   // 購入アイテムを表示しない設定のときはpurchseTypeがbuyのものを除く
-  if (!filter.showBuyItems) {
+  if (filter.showBuyOrSellItems != "buy") {
     filteredList = filteredList.filter((pair) => pair.purchaseType != "buy");
   }
   // 売却アイテムを表示しない設定のときはpurchseTypeがsellのものを除く
-  if (!filter.showSellItems) {
+  if (filter.showBuyOrSellItems != "sell") {
     filteredList = filteredList.filter((pair) => pair.purchaseType != "sell");
   }
 
   // 草
-  if (!filter.showKusaItems) {
+  if (filter.showItemType != "Kusa") {
     filteredList = filteredList.filter((pair) => pair.item.itemType != "Kusa");
   }
 
   // 巻物
-  if (!filter.showMakimonoItems) {
+  if (filter.showItemType != "Makimono") {
     filteredList = filteredList.filter(
       (pair) => pair.item.itemType != "Makimono"
     );
   }
 
   // 壺
-  if (!filter.showTsuboItems) {
+  if (filter.showItemType != "Tsubo") {
     filteredList = filteredList.filter((pair) => pair.item.itemType != "Tsubo");
   }
 
   // 杖
-  if (!filter.showTsueItems) {
+  if (filter.showItemType != "Tsue") {
     filteredList = filteredList.filter((pair) => pair.item.itemType != "Tsue");
   }
 
   // 腕輪
-  if (!filter.showUdewaItems) {
+  if (filter.showItemType != "Udewa") {
     filteredList = filteredList.filter((pair) => pair.item.itemType != "Udewa");
   }
 
@@ -56,28 +56,18 @@ function filterItemList(
 export const ItemList: FC = () => {
   const {
     itemListState,
+    setPurchaseType,
     toggleItemOpened,
-    toggleShowBuyItems,
-    toggleShowSellItems,
-    toggleShowKusaItems,
-    toggleShowMakimonoItems,
-    toggleShowTsuboItems,
-    toggleShowTsueItems,
-    toggleShowUdewaItems,
+    setItemType,
     filter,
   } = useItemList();
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
       <ItemListFilter
-        toggleShowBuyItems={toggleShowBuyItems}
-        toggleShowSellItems={toggleShowSellItems}
-        toggleShowKusaItems={toggleShowKusaItems}
-        toggleShowMakimonoItems={toggleShowMakimonoItems}
-        toggleShowTsuboItems={toggleShowTsuboItems}
-        toggleShowTsueItems={toggleShowTsueItems}
-        toggleShowUdewaItems={toggleShowUdewaItems}
         filter={filter}
+        setPurchaseType={setPurchaseType}
+        setItemType={setItemType}
       />
       <Divider />
       <List sx={{ paddingX: "20px", flexGrow: 1, overflowY: "auto" }}>
