@@ -54,25 +54,20 @@ function filterItemList(
 }
 
 export const ItemList: FC = () => {
-  const {
-    itemListState,
-    setPurchaseType,
-    toggleItemOpened,
-    setItemType,
-    filter,
-  } = useItemList();
+  const { itemListState, setPurchaseType, toggleItemOpened, setItemType } =
+    useItemList();
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
       <ItemListFilter
-        filter={filter}
+        filter={itemListState.filter}
         setPurchaseType={setPurchaseType}
         setItemType={setItemType}
       />
       <Divider />
       <List sx={{ paddingX: "20px", flexGrow: 1, overflowY: "auto" }}>
         {itemListState.groupedList.map((group) => {
-          const itemList = filterItemList(group.itemList, filter);
+          const itemList = filterItemList(group.itemList, itemListState.filter);
           return itemList.length > 0 ? (
             <CollapsibleListItem
               key={group.value}

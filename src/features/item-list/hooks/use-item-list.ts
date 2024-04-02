@@ -6,7 +6,7 @@ import { getAllTsueList } from "../../../data/tsue/tsue";
 import { getAllUdewaList } from "../../../data/udewa/udewa";
 import { Item, ItemType } from "../../../types/Item";
 import { PurchaseType } from "../../../types/purchase";
-import { useState } from "react";
+import { atom, useAtom } from "jotai";
 
 export type ShowBuyOrSellItems = "buy" | "sell";
 
@@ -20,13 +20,28 @@ export interface ItemWithPurchseType {
   item: Item;
 }
 
-interface ItemListState {
+interface ItemListStateAtom {
   groupedList: Array<{
     value: string;
     itemList: Array<ItemWithPurchseType>;
     opened: boolean;
   }>;
+  filter: ItemFilter;
 }
+
+const itemListStateAtom = atom<ItemListStateAtom>({
+  groupedList: getFullGroupedList().map((group) => {
+    return {
+      value: group.value,
+      itemList: group.itemList,
+      opened: false,
+    };
+  }),
+  filter: {
+    showBuyOrSellItems: "buy",
+    showItemType: "Kusa",
+  },
+});
 
 function getFullGroupedList(): Array<{
   value: string;
@@ -72,20 +87,7 @@ function getFullGroupedList(): Array<{
 }
 
 export const useItemList = () => {
-  const [itemListState, setItemListState] = useState<ItemListState>({
-    groupedList: getFullGroupedList().map((group) => {
-      return {
-        value: group.value,
-        itemList: group.itemList,
-        opened: false,
-      };
-    }),
-  });
-
-  const [filter, setFilter] = useState<ItemFilter>({
-    showBuyOrSellItems: "buy",
-    showItemType: "Kusa",
-  });
+  const [itemListState, setItemListState] = useAtom(itemListStateAtom);
 
   function toggleItemOpened(value: string) {
     const next = itemListState.groupedList.map((group) => {
@@ -101,11 +103,23 @@ export const useItemList = () => {
   }
 
   function setPurchaseType(purchaseType: PurchaseType) {
-    setFilter({ ...filter, showBuyOrSellItems: purchaseType });
+    setItemListState({
+      ...itemListState,
+      filter: {
+        ...itemListState.filter,
+        showBuyOrSellItems: purchaseType,
+      },
+    });
   }
 
   function setItemType(itemType: ItemType) {
-    setFilter({ ...filter, showItemType: itemType });
+    setItemListState({
+      ...itemListState,
+      filter: {
+        ...itemListState.filter,
+        showItemType: itemType,
+      },
+    });
   }
 
   return {
@@ -113,6 +127,5 @@ export const useItemList = () => {
     setPurchaseType,
     setItemType,
     toggleItemOpened,
-    filter,
   };
 };
