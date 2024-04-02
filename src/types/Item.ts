@@ -26,4 +26,6 @@ export interface MasterItem {
   name: string;
   buy: number;
   sell: number;
+  // 識別する必要のないアイテム
+  unique: boolean;
 }
