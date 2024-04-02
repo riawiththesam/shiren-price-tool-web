@@ -1,6 +1,7 @@
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import {
+  Box,
   Collapse,
   ListItem,
   ListItemButton,
@@ -10,6 +11,18 @@ import {
 import { FC } from "react";
 import { ItemWithPurchseType } from "../hooks/use-item-list";
 import { ItemListTable } from "./item-list-table";
+import { ItemState } from "../../../types/Item";
+
+function itemStateToColor(state: ItemState): string {
+  switch (state) {
+    case "Normal":
+      return "inherit";
+    case "Noroi":
+      return "red";
+    case "Shukufuku":
+      return "blue";
+  }
+}
 
 interface CollapsibleListItemProps {
   listOpened: boolean;
@@ -24,12 +37,6 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
   const rows = itemList.map((pair) => {
     return pair.item;
   });
-
-  const initialsText = itemList
-    .map((pair) => {
-      return pair.item.name.charAt(0);
-    })
-    .join("/");
 
   const onClickButton = () => {
     onClick(value);
@@ -47,9 +54,23 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
             whiteSpace: "nowrap",
             overflow: "hidden",
             textOverflow: "ellipsis",
+            // 子要素の最初の要素以外の要素全ての前方に"/"を追加
+            "& > *:not(:first-of-type):before": {
+              content: '"/"',
+            },
           }}
         >
-          {initialsText}
+          {itemList.map((pair, i) => (
+            <Box
+              key={i}
+              component="span"
+              sx={{
+                color: itemStateToColor(pair.item.state),
+              }}
+            >
+              {pair.item.name.charAt(0)}
+            </Box>
+          ))}
         </Typography>
         {listOpened ? <RemoveIcon /> : <AddIcon />}
       </ListItemButton>
