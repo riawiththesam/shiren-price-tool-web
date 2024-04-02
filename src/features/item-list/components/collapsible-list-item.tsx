@@ -38,10 +38,11 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
   return (
     <ListItem sx={{ flexFlow: "column", alignItems: "stretch" }}>
       <ListItemButton onClick={onClickButton}>
-        <ListItemText primary={value} />
+        <ListItemText primary={value} sx={{ flexGrow: 0, flexShrink: 0 }} />
         <Typography
           variant="subtitle2"
           sx={{
+            flexGrow: 1,
             paddingLeft: "20px",
             whiteSpace: "nowrap",
             overflow: "hidden",
