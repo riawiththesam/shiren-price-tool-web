@@ -18,27 +18,48 @@ export interface ItemWithPurchseType {
   item: Item;
 }
 
-interface ItemListStateAtom {
-  groupedList: Array<{
-    value: string;
-    itemList: Array<ItemWithPurchseType>;
-    opened: boolean;
-  }>;
+export interface ItemGroup {
+  value: string;
+  itemList: Array<ItemWithPurchseType>;
+  opened: boolean;
+}
+
+interface ItemListState {
+  groupedList: Array<ItemGroup>;
   filter: ItemFilter;
 }
 
-const itemListStateAtom = atom<ItemListStateAtom>({
-  groupedList: getFullGroupedList().map((group) => {
-    return {
-      value: group.value,
-      itemList: group.itemList,
-      opened: false,
-    };
-  }),
-  filter: {
-    purchaseType: "buy",
-    showItemType: "Kusa",
-  },
+interface FilterdItemListState {
+  filteredList: Array<ItemGroup>;
+}
+
+const initialFilter: ItemFilter = {
+  purchaseType: "buy",
+  showItemType: "Kusa",
+};
+const initialGroupedList = getFullGroupedList().map((group) => {
+  return {
+    value: group.value,
+    itemList: group.itemList,
+    opened: false,
+  };
+});
+
+const itemListStateAtom = atom<ItemListState>({
+  groupedList: initialGroupedList,
+  filter: initialFilter,
+});
+
+const filteredListStateAtom = atom<FilterdItemListState>((get) => {
+  const itemListState = get(itemListStateAtom);
+  return {
+    filteredList: itemListState.groupedList.map((group) => {
+      return {
+        ...group,
+        itemList: filterItemList(group.itemList, itemListState.filter),
+      };
+    }),
+  };
 });
 
 function getFullGroupedList(): Array<{
@@ -84,8 +105,54 @@ function getFullGroupedList(): Array<{
   return groupedList;
 }
 
+function filterItemList(
+  itemList: Array<ItemWithPurchseType>,
+  filter: ItemFilter
+): Array<ItemWithPurchseType> {
+  let filteredList = itemList;
+
+  // 購入アイテムを表示しない設定のときはpurchseTypeがbuyのものを除く
+  if (filter.purchaseType != "buy") {
+    filteredList = filteredList.filter((pair) => pair.purchaseType != "buy");
+  }
+  // 売却アイテムを表示しない設定のときはpurchseTypeがsellのものを除く
+  if (filter.purchaseType != "sell") {
+    filteredList = filteredList.filter((pair) => pair.purchaseType != "sell");
+  }
+
+  // 草
+  if (filter.showItemType != "Kusa") {
+    filteredList = filteredList.filter((pair) => pair.item.itemType != "Kusa");
+  }
+
+  // 巻物
+  if (filter.showItemType != "Makimono") {
+    filteredList = filteredList.filter(
+      (pair) => pair.item.itemType != "Makimono"
+    );
+  }
+
+  // 壺
+  if (filter.showItemType != "Tsubo") {
+    filteredList = filteredList.filter((pair) => pair.item.itemType != "Tsubo");
+  }
+
+  // 杖
+  if (filter.showItemType != "Tsue") {
+    filteredList = filteredList.filter((pair) => pair.item.itemType != "Tsue");
+  }
+
+  // 腕輪
+  if (filter.showItemType != "Udewa") {
+    filteredList = filteredList.filter((pair) => pair.item.itemType != "Udewa");
+  }
+
+  return filteredList;
+}
+
 export const useItemList = () => {
   const [itemListState, setItemListState] = useAtom(itemListStateAtom);
+  const [filteredItemListState] = useAtom(filteredListStateAtom);
 
   function toggleItemOpened(value: string) {
     const next = itemListState.groupedList.map((group) => {
@@ -122,6 +189,7 @@ export const useItemList = () => {
 
   return {
     itemListState,
+    filteredItemListState,
     setPurchaseType,
     setItemType,
     toggleItemOpened,
