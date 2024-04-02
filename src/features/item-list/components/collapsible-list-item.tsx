@@ -1,7 +1,7 @@
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import {
   Collapse,
-  List,
   ListItem,
   ListItemButton,
   ListItemText,
@@ -32,7 +32,7 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
     <ListItem sx={{ flexFlow: "column", alignItems: "stretch" }}>
       <ListItemButton onClick={onClickButton}>
         <ListItemText primary={value} />
-        {listOpened ? <ExpandLess /> : <ExpandMore />}
+        {listOpened ? <RemoveIcon /> : <AddIcon />}
       </ListItemButton>
       <Collapse
         in={listOpened}
