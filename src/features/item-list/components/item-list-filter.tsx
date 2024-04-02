@@ -43,12 +43,16 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
       <RadioGroup row onChange={handleOnChangeShowBuyOrSell}>
         <FormControlLabel
           value="buy"
-          control={<Radio checked={filter.purchaseType == "buy"} />}
+          control={
+            <Radio checked={filter.purchaseType == "buy"} size="small" />
+          }
           label="買"
         />
         <FormControlLabel
           value="sell"
-          control={<Radio checked={filter.purchaseType == "sell"} />}
+          control={
+            <Radio checked={filter.purchaseType == "sell"} size="small" />
+          }
           label="売"
         />
       </RadioGroup>
@@ -58,27 +62,37 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
       <RadioGroup row onChange={handleOnChangeShowItemType}>
         <FormControlLabel
           value="Kusa"
-          control={<Radio checked={filter.showItemType == "Kusa"} />}
+          control={
+            <Radio checked={filter.showItemType == "Kusa"} size="small" />
+          }
           label="草"
         />
         <FormControlLabel
           value="Makimono"
-          control={<Radio checked={filter.showItemType == "Makimono"} />}
+          control={
+            <Radio checked={filter.showItemType == "Makimono"} size="small" />
+          }
           label="巻"
         />
         <FormControlLabel
           value="Tsubo"
-          control={<Radio checked={filter.showItemType == "Tsubo"} />}
+          control={
+            <Radio checked={filter.showItemType == "Tsubo"} size="small" />
+          }
           label="壺"
         />
         <FormControlLabel
           value="Tsue"
-          control={<Radio checked={filter.showItemType == "Tsue"} />}
+          control={
+            <Radio checked={filter.showItemType == "Tsue"} size="small" />
+          }
           label="杖"
         />
         <FormControlLabel
           value="Udewa"
-          control={<Radio checked={filter.showItemType == "Udewa"} />}
+          control={
+            <Radio checked={filter.showItemType == "Udewa"} size="small" />
+          }
           label="腕"
         />
       </RadioGroup>
