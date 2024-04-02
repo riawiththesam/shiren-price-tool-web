@@ -5,6 +5,7 @@ import {
   Radio,
   RadioGroup,
   Stack,
+  Switch,
 } from "@mui/material";
 import { ChangeEvent, FC } from "react";
 import { ItemFilter } from "../hooks/use-item-list";
@@ -14,11 +15,12 @@ import { PurchaseType } from "../../../types/purchase";
 export interface ItemListSubheaderProps {
   setPurchaseType: (purchaseType: PurchaseType) => void;
   setItemType: (itemType: ItemType) => void;
+  setEnableUnique: (enable: boolean) => void;
   filter: ItemFilter;
 }
 
 export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
-  const { setPurchaseType, setItemType, filter } = props;
+  const { setPurchaseType, setItemType, setEnableUnique, filter } = props;
 
   const handleOnChangeShowBuyOrSell = (
     event: ChangeEvent<HTMLInputElement>
@@ -28,6 +30,10 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
 
   const handleOnChangeShowItemType = (event: ChangeEvent<HTMLInputElement>) => {
     setItemType(event.target.value as ItemType);
+  };
+
+  const handleOnChangeEnableUnique = (event: ChangeEvent<HTMLInputElement>) => {
+    setEnableUnique(event.target.checked);
   };
 
   return (
@@ -96,6 +102,20 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
           label="腕"
         />
       </RadioGroup>
+
+      <Divider orientation="vertical" />
+
+      <FormControlLabel
+        value="unique-item"
+        control={
+          <Switch
+            onChange={handleOnChangeEnableUnique}
+            checked={filter.enableUnique}
+            size="small"
+          />
+        }
+        label="特"
+      />
     </Stack>
   );
 };

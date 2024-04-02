@@ -10,6 +10,7 @@ export const ItemList: FC = () => {
     filteredItemListState,
     setPurchaseType,
     toggleItemOpened,
+    setEnableUnique,
     setItemType,
   } = useItemList();
 
@@ -19,6 +20,7 @@ export const ItemList: FC = () => {
         filter={itemListState.filter}
         setPurchaseType={setPurchaseType}
         setItemType={setItemType}
+        setEnableUnique={setEnableUnique}
       />
       <Divider />
       <List sx={{ paddingX: "20px", flexGrow: 1, overflowY: "auto" }}>

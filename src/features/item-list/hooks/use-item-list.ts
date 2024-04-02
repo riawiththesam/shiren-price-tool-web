@@ -11,6 +11,7 @@ import { atom, useAtom } from "jotai";
 export interface ItemFilter {
   purchaseType: PurchaseType;
   showItemType: ItemType;
+  enableUnique: boolean;
 }
 
 export interface ItemWithPurchseType {
@@ -36,6 +37,7 @@ interface FilterdItemListState {
 const initialFilter: ItemFilter = {
   purchaseType: "buy",
   showItemType: "Kusa",
+  enableUnique: false,
 };
 const initialGroupedList = getFullGroupedList().map((group) => {
   return {
@@ -147,6 +149,11 @@ function filterItemList(
     filteredList = filteredList.filter((pair) => pair.item.itemType != "Udewa");
   }
 
+  // 識別不要アイテムを表示しない場合、ユニークフラグのないアイテムのみにする
+  if (!filter.enableUnique) {
+    filteredList = filteredList.filter((pair) => !pair.item.unique);
+  }
+
   return filteredList;
 }
 
@@ -187,11 +194,22 @@ export const useItemList = () => {
     });
   }
 
+  function setEnableUnique(enable: boolean) {
+    setItemListState({
+      ...itemListState,
+      filter: {
+        ...itemListState.filter,
+        enableUnique: enable,
+      },
+    });
+  }
+
   return {
     itemListState,
     filteredItemListState,
     setPurchaseType,
     setItemType,
+    setEnableUnique,
     toggleItemOpened,
   };
 };
