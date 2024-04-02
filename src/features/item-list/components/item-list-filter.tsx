@@ -43,12 +43,12 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
       <RadioGroup row onChange={handleOnChangeShowBuyOrSell}>
         <FormControlLabel
           value="buy"
-          control={<Radio checked={filter.showBuyOrSellItems == "buy"} />}
+          control={<Radio checked={filter.purchaseType == "buy"} />}
           label="買"
         />
         <FormControlLabel
           value="sell"
-          control={<Radio checked={filter.showBuyOrSellItems == "sell"} />}
+          control={<Radio checked={filter.purchaseType == "sell"} />}
           label="売"
         />
       </RadioGroup>

@@ -15,11 +15,11 @@ function filterItemList(
   let filteredList = itemList;
 
   // 購入アイテムを表示しない設定のときはpurchseTypeがbuyのものを除く
-  if (filter.showBuyOrSellItems != "buy") {
+  if (filter.purchaseType != "buy") {
     filteredList = filteredList.filter((pair) => pair.purchaseType != "buy");
   }
   // 売却アイテムを表示しない設定のときはpurchseTypeがsellのものを除く
-  if (filter.showBuyOrSellItems != "sell") {
+  if (filter.purchaseType != "sell") {
     filteredList = filteredList.filter((pair) => pair.purchaseType != "sell");
   }
 

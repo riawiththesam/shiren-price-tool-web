@@ -8,10 +8,8 @@ import { Item, ItemType } from "../../../types/Item";
 import { PurchaseType } from "../../../types/purchase";
 import { atom, useAtom } from "jotai";
 
-export type ShowBuyOrSellItems = "buy" | "sell";
-
 export interface ItemFilter {
-  showBuyOrSellItems: ShowBuyOrSellItems;
+  purchaseType: PurchaseType;
   showItemType: ItemType;
 }
 
@@ -38,7 +36,7 @@ const itemListStateAtom = atom<ItemListStateAtom>({
     };
   }),
   filter: {
-    showBuyOrSellItems: "buy",
+    purchaseType: "buy",
     showItemType: "Kusa",
   },
 });
@@ -107,7 +105,7 @@ export const useItemList = () => {
       ...itemListState,
       filter: {
         ...itemListState.filter,
-        showBuyOrSellItems: purchaseType,
+        purchaseType: purchaseType,
       },
     });
   }
