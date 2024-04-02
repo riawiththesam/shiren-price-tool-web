@@ -20,6 +20,8 @@ export interface Item {
   sell: number;
   state: ItemState;
   itemType: ItemType;
+  // 識別する必要のないアイテム
+  unique: boolean;
 }
 
 export interface MasterItem {
