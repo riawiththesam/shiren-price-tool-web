@@ -1,4 +1,3 @@
-import "./App.css";
 import { ShirenAppBar } from "./features/shiren-app-bar/components/shiren-app-bar.tsx";
 import { ShirenDrawer } from "./features/shiren-app-bar/components/shiren-drawer.tsx";
 import { MainUI } from "./features/main-ui/components/main-ui.tsx";
