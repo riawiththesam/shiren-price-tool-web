@@ -13,7 +13,7 @@ interface MainUIState {
 }
 
 const mainUIAtom = atom<MainUIState>({
-  featureUIState: "ItemSearch",
+  featureUIState: "ItemList",
   drawerOpened: false,
 });
 
