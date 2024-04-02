@@ -11,18 +11,6 @@ import {
 import { FC } from "react";
 import { ItemWithPurchseType } from "../hooks/use-item-list";
 import { ItemListTable } from "./item-list-table";
-import { ItemState } from "../../../types/Item";
-
-function itemStateToColor(state: ItemState): string {
-  switch (state) {
-    case "Normal":
-      return "inherit";
-    case "Noroi":
-      return "red";
-    case "Shukufuku":
-      return "blue";
-  }
-}
 
 interface CollapsibleListItemProps {
   listOpened: boolean;
@@ -58,16 +46,18 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
             "& > *:not(:first-of-type):before": {
               content: '"/"',
             },
+            "& > *": {
+              "&.Noroi": {
+                color: "red",
+              },
+              "&.Shukufuku": {
+                color: "blue",
+              },
+            },
           }}
         >
           {itemList.map((pair, i) => (
-            <Box
-              key={i}
-              component="span"
-              sx={{
-                color: itemStateToColor(pair.item.state),
-              }}
-            >
+            <Box key={i} component="span" className={pair.item.state}>
               {pair.item.name.charAt(0)}
             </Box>
           ))}
