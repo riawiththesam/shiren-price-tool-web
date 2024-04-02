@@ -14,7 +14,7 @@ import KusaIcon from "../../../assets/kusa.png";
 import TsueIcon from "../../../assets/tsue.png";
 import UdewaIcon from "../../../assets/udewa.png";
 import TsuboIcon from "../../../assets/tsubo.png";
-import { ItemState, ItemType } from "../../../types/Item";
+import { Item, ItemState, ItemType } from "../../../types/Item";
 
 function itemTypeToIcon(itemType: ItemType): string {
   switch (itemType) {
@@ -68,16 +68,8 @@ function itemStateToTextColor(itemState: ItemState): string {
   }
 }
 
-interface Row {
-  name: string;
-  itemType: ItemType;
-  buy: number;
-  sell: number;
-  state: ItemState;
-}
-
 export interface ItemListTableProps {
-  rows: Array<Row>;
+  rows: Array<Item>;
 }
 
 export const ItemListTable: FC<ItemListTableProps> = (props) => {
@@ -89,6 +81,7 @@ export const ItemListTable: FC<ItemListTableProps> = (props) => {
           <TableRow>
             <TableCell>アイテム名</TableCell>
             <TableCell align="right">種別</TableCell>
+            <TableCell align="right">元値</TableCell>
             <TableCell align="right">購入</TableCell>
             <TableCell align="right">売却</TableCell>
             <TableCell align="right">状態</TableCell>
@@ -113,6 +106,7 @@ export const ItemListTable: FC<ItemListTableProps> = (props) => {
                   {itemTypeToText(row.itemType)}
                 </Box>
               </TableCell>
+              <TableCell align="right">{row.defaultBuy}</TableCell>
               <TableCell align="right">{row.buy}</TableCell>
               <TableCell align="right">{row.sell}</TableCell>
               <TableCell align="right">{itemStateToText(row.state)}</TableCell>
