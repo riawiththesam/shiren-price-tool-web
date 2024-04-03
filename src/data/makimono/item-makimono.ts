@@ -32,6 +32,7 @@ export const list = {
     },
     {
       name: "おはらいの巻物",
+      shortName: "祓",
       buy: 600,
       sell: 240,
       unique: false,
@@ -62,24 +63,28 @@ export const list = {
     },
     {
       name: "印増大の巻物",
+      shortName: "印増",
       buy: 400,
       sell: 160,
       unique: false,
     },
     {
       name: "印消しの巻物",
+      shortName: "印消",
       buy: 400,
       sell: 160,
       unique: false,
     },
     {
       name: "銀封印の巻物",
+      shortName: "銀封",
       buy: 300,
       sell: 120,
       unique: false,
     },
     {
       name: "銀はがしの巻物",
+      shortName: "銀剥",
       buy: 1000,
       sell: 400,
       unique: false,
@@ -98,6 +103,7 @@ export const list = {
     },
     {
       name: "おにぎりの巻物",
+      shortName: "握",
       buy: 400,
       sell: 160,
       unique: false,
@@ -122,12 +128,14 @@ export const list = {
     },
     {
       name: "罠消しの巻物",
+      shortName: "罠消",
       buy: 600,
       sell: 240,
       unique: false,
     },
     {
       name: "罠の巻物",
+      shortName: "罠の",
       buy: 1000,
       sell: 400,
       unique: false,

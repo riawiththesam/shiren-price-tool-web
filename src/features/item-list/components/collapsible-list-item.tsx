@@ -58,7 +58,7 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
         >
           {itemList.map((pair, i) => (
             <Box key={i} component="span" className={pair.item.state}>
-              {pair.item.name.charAt(0)}
+              {pair.item.shortName}
             </Box>
           ))}
         </Typography>

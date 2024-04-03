@@ -44,12 +44,14 @@ export const list = {
     },
     {
       name: "胃拡張の種",
+      shortName: "胃拡",
       buy: 200,
       sell: 80,
       unique: false,
     },
     {
       name: "胃縮小の種",
+      shortName: "胃縮",
       buy: 200,
       sell: 80,
       unique: false,
@@ -68,6 +70,7 @@ export const list = {
     },
     {
       name: "毒消し草",
+      shortName: "毒消",
       buy: 600,
       sell: 240,
       unique: false,
@@ -80,6 +83,7 @@ export const list = {
     },
     {
       name: "毒草",
+      shortName: "毒草",
       buy: 50,
       sell: 20,
       unique: false,
@@ -104,12 +108,14 @@ export const list = {
     },
     {
       name: "目つぶし草",
+      shortName: "目潰",
       buy: 70,
       sell: 25,
       unique: false,
     },
     {
       name: "めぐすり草",
+      shortName: "目薬",
       buy: 70,
       sell: 25,
       unique: false,

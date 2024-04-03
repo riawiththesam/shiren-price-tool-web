@@ -13,6 +13,7 @@ export const itemStateRateMap: ItemStateRateMapType = {
 export function mapToNoroi(master: MasterItem, itemType: ItemType): Item {
   return {
     name: master.name,
+    shortName: master.shortName ?? master.name.charAt(0),
     defaultBuy: master.buy,
     defaultSell: master.sell,
     unique: master.unique,
@@ -26,6 +27,7 @@ export function mapToNoroi(master: MasterItem, itemType: ItemType): Item {
 export function mapToShukufuku(master: MasterItem, itemType: ItemType): Item {
   return {
     name: master.name,
+    shortName: master.shortName ?? master.name.charAt(0),
     defaultBuy: master.buy,
     defaultSell: master.sell,
     unique: master.unique,
@@ -39,6 +41,7 @@ export function mapToShukufuku(master: MasterItem, itemType: ItemType): Item {
 export function mapToNormal(master: MasterItem, itemType: ItemType): Item {
   return {
     name: master.name,
+    shortName: master.shortName ?? master.name.charAt(0),
     defaultBuy: master.buy,
     defaultSell: master.sell,
     unique: master.unique,

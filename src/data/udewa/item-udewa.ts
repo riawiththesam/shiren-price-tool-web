@@ -14,12 +14,14 @@ export const list = {
     },
     {
       name: "胃拡張の腕輪",
+      shortName: "胃拡",
       buy: 3500,
       sell: 1400,
       unique: false,
     },
     {
       name: "胃縮小の腕輪",
+      shortName: "胃縮",
       buy: 3500,
       sell: 1400,
       unique: false,
@@ -194,6 +196,7 @@ export const list = {
     },
     {
       name: "罠増しの腕輪",
+      shortName: "罠増",
       buy: 1500,
       sell: 600,
       unique: false,
@@ -206,6 +209,7 @@ export const list = {
     },
     {
       name: "罠師の腕輪",
+      shortName: "罠師",
       buy: 7500,
       sell: 3000,
       unique: false,

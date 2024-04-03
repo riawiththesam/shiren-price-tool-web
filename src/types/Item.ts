@@ -14,6 +14,7 @@ export type ItemType = (typeof ItemTypeList)[number];
 
 export interface Item {
   name: string;
+  shortName: string;
   defaultBuy: number;
   defaultSell: number;
   buy: number;
@@ -26,6 +27,7 @@ export interface Item {
 
 export interface MasterItem {
   name: string;
+  shortName?: string;
   buy: number;
   sell: number;
   // 識別する必要のないアイテム

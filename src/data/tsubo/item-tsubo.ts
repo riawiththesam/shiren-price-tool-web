@@ -64,6 +64,7 @@ export const list = {
     },
     {
       name: "おはらいの壺",
+      shortName: "祓",
       buy: 1600,
       sell: 640,
       unique: false,
