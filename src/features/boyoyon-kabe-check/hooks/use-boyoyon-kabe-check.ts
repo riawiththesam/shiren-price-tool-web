@@ -1,3 +1,4 @@
+import { produce } from "immer";
 import { atom, useAtom } from "jotai";
 import range from "just-range";
 
@@ -22,31 +23,35 @@ export function useBoyoyonKabeCheck() {
     useAtom(boyoyonKabeCheckAtom);
 
   const onClickHorizontalAdd = () => {
-    setBoyoyonKabeCheckState({
-      ...boyoyonKabeCheckState,
-      roomWidth: boyoyonKabeCheckState.roomWidth + 1,
+    const next = produce(boyoyonKabeCheckState, (draft) => {
+      draft.roomWidth += 1;
+      return draft;
     });
+    setBoyoyonKabeCheckState(next);
   };
 
   const onClickHorizontalRemove = () => {
-    setBoyoyonKabeCheckState({
-      ...boyoyonKabeCheckState,
-      roomWidth: boyoyonKabeCheckState.roomWidth - 1,
+    const next = produce(boyoyonKabeCheckState, (draft) => {
+      draft.roomWidth -= 1;
+      return draft;
     });
+    setBoyoyonKabeCheckState(next);
   };
 
   const onClickVerticalAdd = () => {
-    setBoyoyonKabeCheckState({
-      ...boyoyonKabeCheckState,
-      roomHeight: boyoyonKabeCheckState.roomHeight + 1,
+    const next = produce(boyoyonKabeCheckState, (draft) => {
+      draft.roomHeight += 1;
+      return draft;
     });
+    setBoyoyonKabeCheckState(next);
   };
 
   const onClickVerticalRemove = () => {
-    setBoyoyonKabeCheckState({
-      ...boyoyonKabeCheckState,
-      roomHeight: boyoyonKabeCheckState.roomHeight - 1,
+    const next = produce(boyoyonKabeCheckState, (draft) => {
+      draft.roomHeight += 1;
+      return draft;
     });
+    setBoyoyonKabeCheckState(next);
   };
 
   return {
