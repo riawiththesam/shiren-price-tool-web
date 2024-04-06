@@ -25,6 +25,9 @@ export function useBoyoyonKabeCheck() {
   const onClickHorizontalAdd = () => {
     const next = produce(boyoyonKabeCheckState, (draft) => {
       draft.roomWidth += 1;
+      draft.roomMap = draft.roomMap.map((line) => {
+        return [...line, 1];
+      });
       return draft;
     });
     setBoyoyonKabeCheckState(next);
@@ -33,6 +36,9 @@ export function useBoyoyonKabeCheck() {
   const onClickHorizontalRemove = () => {
     const next = produce(boyoyonKabeCheckState, (draft) => {
       draft.roomWidth -= 1;
+      draft.roomMap = draft.roomMap.map((line) => {
+        return [...line].slice(0, -1);
+      });
       return draft;
     });
     setBoyoyonKabeCheckState(next);
@@ -41,6 +47,10 @@ export function useBoyoyonKabeCheck() {
   const onClickVerticalAdd = () => {
     const next = produce(boyoyonKabeCheckState, (draft) => {
       draft.roomHeight += 1;
+      draft.roomMap = [
+        ...draft.roomMap,
+        new Array(draft.roomMap[0].length).fill(1),
+      ];
       return draft;
     });
     setBoyoyonKabeCheckState(next);
@@ -49,6 +59,7 @@ export function useBoyoyonKabeCheck() {
   const onClickVerticalRemove = () => {
     const next = produce(boyoyonKabeCheckState, (draft) => {
       draft.roomHeight += 1;
+      draft.roomMap = draft.roomMap.slice(0, -1);
       return draft;
     });
     setBoyoyonKabeCheckState(next);

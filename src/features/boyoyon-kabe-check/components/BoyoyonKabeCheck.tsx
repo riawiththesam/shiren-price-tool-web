@@ -32,8 +32,21 @@ export const BoyoyonKabeCheck: FC = () => {
   } = useBoyoyonKabeCheck();
 
   return (
-    <Stack sx={{ maxWidth: "500px" }}>
-      <TableContainer>
+    <Stack>
+      <Stack direction="row">
+        <Box>{roomWidth}</Box>
+        <SizeChangeButtons
+          onClickAdd={onClickHorizontalAdd}
+          onClickRemove={onClickHorizontalRemove}
+        />
+        <Box>x{roomHeight}</Box>
+        <SizeChangeButtons
+          onClickAdd={onClickVerticalAdd}
+          onClickRemove={onClickVerticalRemove}
+        />
+      </Stack>
+
+      <TableContainer sx={{ maxWidth: "500px", maxHeight: "500px" }}>
         <Table
           sx={{
             display: "flex",
@@ -62,19 +75,6 @@ export const BoyoyonKabeCheck: FC = () => {
           </TableBody>
         </Table>
       </TableContainer>
-
-      <Stack direction="row" sx={{ justifyContent: "flex-end" }}>
-        <Box>{roomWidth}</Box>
-        <SizeChangeButtons
-          onClickAdd={onClickHorizontalAdd}
-          onClickRemove={onClickHorizontalRemove}
-        />
-        <Box>x{roomHeight}</Box>
-        <SizeChangeButtons
-          onClickAdd={onClickVerticalAdd}
-          onClickRemove={onClickVerticalRemove}
-        />
-      </Stack>
     </Stack>
   );
 };
