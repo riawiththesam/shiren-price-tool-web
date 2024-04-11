@@ -10,7 +10,7 @@ import { atom, useAtom } from "jotai";
 
 export interface ItemFilter {
   purchaseType: PurchaseType;
-  showItemType: ItemType;
+  showItemType: ItemType | "All";
   enableUnique: boolean;
 }
 
@@ -122,31 +122,11 @@ function filterItemList(
     filteredList = filteredList.filter((pair) => pair.purchaseType != "sell");
   }
 
-  // 草
-  if (filter.showItemType != "Kusa") {
-    filteredList = filteredList.filter((pair) => pair.item.itemType != "Kusa");
-  }
-
-  // 巻物
-  if (filter.showItemType != "Makimono") {
+  // ItemTypeでフィルターが設定されている場合は、そのItemTypeのみにする
+  if (filter.showItemType != "All") {
     filteredList = filteredList.filter(
-      (pair) => pair.item.itemType != "Makimono"
+      (pair) => pair.item.itemType == filter.showItemType
     );
-  }
-
-  // 壺
-  if (filter.showItemType != "Tsubo") {
-    filteredList = filteredList.filter((pair) => pair.item.itemType != "Tsubo");
-  }
-
-  // 杖
-  if (filter.showItemType != "Tsue") {
-    filteredList = filteredList.filter((pair) => pair.item.itemType != "Tsue");
-  }
-
-  // 腕輪
-  if (filter.showItemType != "Udewa") {
-    filteredList = filteredList.filter((pair) => pair.item.itemType != "Udewa");
   }
 
   // 識別不要アイテムを表示しない場合、ユニークフラグのないアイテムのみにする
@@ -184,7 +164,7 @@ export const useItemList = () => {
     });
   }
 
-  function setItemType(itemType: ItemType) {
+  function setItemType(itemType: ItemType | "All") {
     setItemListState({
       ...itemListState,
       filter: {

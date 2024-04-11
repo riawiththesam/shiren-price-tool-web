@@ -14,7 +14,7 @@ import { PurchaseType } from "../../../types/purchase";
 
 export interface ItemListSubheaderProps {
   setPurchaseType: (purchaseType: PurchaseType) => void;
-  setItemType: (itemType: ItemType) => void;
+  setItemType: (itemType: ItemType | "All") => void;
   setEnableUnique: (enable: boolean) => void;
   filter: ItemFilter;
 }
@@ -29,7 +29,7 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
   };
 
   const handleOnChangeShowItemType = (event: ChangeEvent<HTMLInputElement>) => {
-    setItemType(event.target.value as ItemType);
+    setItemType(event.target.value as ItemType | "All");
   };
 
   const handleOnChangeEnableUnique = (event: ChangeEvent<HTMLInputElement>) => {
@@ -66,6 +66,13 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
       <Divider orientation="vertical" />
 
       <RadioGroup row onChange={handleOnChangeShowItemType}>
+        <FormControlLabel
+          value="All"
+          control={
+            <Radio checked={filter.showItemType == "All"} size="small" />
+          }
+          label="全"
+        />
         <FormControlLabel
           value="Kusa"
           control={
