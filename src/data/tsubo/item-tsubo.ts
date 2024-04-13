@@ -180,7 +180,7 @@ export const list = {
  */
 const _fullList: ReadonlyArray<MasterItem> = list.list
   .map((item) => {
-    return range(item.min, item.max).map((index) => {
+    return range(item.min, item.max + 1).map((index) => {
       return {
         name: `${item.name}[${index}]`,
         buy: item.buy + index * 100,
