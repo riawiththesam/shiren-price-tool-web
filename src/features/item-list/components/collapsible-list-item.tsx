@@ -10,26 +10,27 @@ import {
 } from "@mui/material";
 import { FC } from "react";
 import { ItemListTable } from "./item-list-table";
-import { Item } from "../../../types/Item";
+import { ItemGroup } from "../hooks/use-item-list";
 
 interface CollapsibleListItemProps {
-  listOpened: boolean;
-  value: string;
-  itemList: Array<Item>;
+  itemGroup: ItemGroup;
   onClick: (value: string) => void;
 }
 
 export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
-  const { listOpened, value, itemList, onClick } = props;
+  const { itemGroup, onClick } = props;
 
   const onClickButton = () => {
-    onClick(value);
+    onClick(itemGroup.value);
   };
 
   return (
     <ListItem sx={{ flexFlow: "column", alignItems: "stretch" }}>
       <ListItemButton onClick={onClickButton}>
-        <ListItemText primary={value} sx={{ flexGrow: 0, flexShrink: 0 }} />
+        <ListItemText
+          primary={itemGroup.value}
+          sx={{ flexGrow: 0, flexShrink: 0 }}
+        />
         <Typography
           variant="subtitle2"
           sx={{
@@ -52,21 +53,21 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
             },
           }}
         >
-          {itemList.map((item, i) => (
+          {itemGroup.itemList.map((item, i) => (
             <Box key={i} component="span" className={item.state}>
               {item.shortName}
             </Box>
           ))}
         </Typography>
-        {listOpened ? <RemoveIcon /> : <AddIcon />}
+        {itemGroup.opened ? <RemoveIcon /> : <AddIcon />}
       </ListItemButton>
       <Collapse
-        in={listOpened}
+        in={itemGroup.opened}
         timeout={200}
         unmountOnExit
         sx={{ paddingLeft: "32px" }}
       >
-        <ItemListTable rows={itemList} />
+        <ItemListTable rows={itemGroup.itemList} />
       </Collapse>
     </ListItem>
   );

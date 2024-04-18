@@ -28,9 +28,7 @@ export const ItemList: FC = () => {
           return group.itemList.length > 0 ? (
             <CollapsibleListItem
               key={group.value}
-              itemList={group.itemList}
-              listOpened={group.opened}
-              value={group.value}
+              itemGroup={group}
               onClick={toggleItemOpened}
             />
           ) : null;
