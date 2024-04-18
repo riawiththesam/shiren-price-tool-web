@@ -9,22 +9,18 @@ import {
   Typography,
 } from "@mui/material";
 import { FC } from "react";
-import { ItemWithPurchseType } from "../hooks/use-item-list";
 import { ItemListTable } from "./item-list-table";
+import { Item } from "../../../types/Item";
 
 interface CollapsibleListItemProps {
   listOpened: boolean;
   value: string;
-  itemList: Array<ItemWithPurchseType>;
+  itemList: Array<Item>;
   onClick: (value: string) => void;
 }
 
 export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
   const { listOpened, value, itemList, onClick } = props;
-
-  const rows = itemList.map((pair) => {
-    return pair.item;
-  });
 
   const onClickButton = () => {
     onClick(value);
@@ -56,9 +52,9 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
             },
           }}
         >
-          {itemList.map((pair, i) => (
-            <Box key={i} component="span" className={pair.item.state}>
-              {pair.item.shortName}
+          {itemList.map((item, i) => (
+            <Box key={i} component="span" className={item.state}>
+              {item.shortName}
             </Box>
           ))}
         </Typography>
@@ -70,7 +66,7 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
         unmountOnExit
         sx={{ paddingLeft: "32px" }}
       >
-        <ItemListTable rows={rows} />
+        <ItemListTable rows={itemList} />
       </Collapse>
     </ListItem>
   );

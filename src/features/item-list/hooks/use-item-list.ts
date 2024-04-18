@@ -14,19 +14,17 @@ export interface ItemFilter {
   enableUnique: boolean;
 }
 
-export interface ItemWithPurchseType {
-  purchaseType: PurchaseType;
-  item: Item;
-}
-
 export interface ItemGroup {
   value: string;
-  itemList: Array<ItemWithPurchseType>;
+  itemList: Array<Item>;
   opened: boolean;
 }
 
 interface ItemListState {
-  groupedList: Array<ItemGroup>;
+  groupedListSet: {
+    buy: Array<ItemGroup>;
+    sell: Array<ItemGroup>;
+  };
   filter: ItemFilter;
 }
 
@@ -39,7 +37,14 @@ const initialFilter: ItemFilter = {
   showItemType: "Kusa",
   enableUnique: false,
 };
-const initialGroupedList = getFullGroupedList().map((group) => {
+const initialBuyGroupedList = getFullGroupedList("buy").map((group) => {
+  return {
+    value: group.value,
+    itemList: group.itemList,
+    opened: false,
+  };
+});
+const initialSellGroupedList = getFullGroupedList("sell").map((group) => {
   return {
     value: group.value,
     itemList: group.itemList,
@@ -48,14 +53,19 @@ const initialGroupedList = getFullGroupedList().map((group) => {
 });
 
 const itemListStateAtom = atom<ItemListState>({
-  groupedList: initialGroupedList,
+  groupedListSet: {
+    buy: initialBuyGroupedList,
+    sell: initialSellGroupedList,
+  },
   filter: initialFilter,
 });
 
 const filteredListStateAtom = atom<FilterdItemListState>((get) => {
   const itemListState = get(itemListStateAtom);
   return {
-    filteredList: itemListState.groupedList.map((group) => {
+    filteredList: itemListState.groupedListSet[
+      itemListState.filter.purchaseType
+    ].map((group) => {
       return {
         ...group,
         itemList: filterItemList(group.itemList, itemListState.filter),
@@ -64,9 +74,9 @@ const filteredListStateAtom = atom<FilterdItemListState>((get) => {
   };
 });
 
-function getFullGroupedList(): Array<{
+function getFullGroupedList(purchaseType: PurchaseType): Array<{
   value: string;
-  itemList: ItemWithPurchseType[];
+  itemList: Item[];
 }> {
   const rawItemList: Array<Item> = [];
   rawItemList.push(...getAllKusaList());
@@ -79,24 +89,7 @@ function getFullGroupedList(): Array<{
     return a.buy - b.buy;
   });
 
-  const buyItemList: Array<ItemWithPurchseType> = rawItemList.map((item) => {
-    return {
-      purchaseType: "buy",
-      item,
-    };
-  });
-  const sellItemList: Array<ItemWithPurchseType> = rawItemList.map((item) => {
-    return {
-      purchaseType: "sell",
-      item,
-    };
-  });
-  const itemWithPurchseTypeList = [...buyItemList, ...sellItemList];
-
-  const grouped = groupBy(
-    itemWithPurchseTypeList,
-    (pair) => pair.item[pair.purchaseType]
-  );
+  const grouped = groupBy(rawItemList, (item) => item[purchaseType]);
   const groupedList = Object.entries(grouped).map(([value, itemList]) => {
     return {
       value,
@@ -108,30 +101,21 @@ function getFullGroupedList(): Array<{
 }
 
 function filterItemList(
-  itemList: Array<ItemWithPurchseType>,
+  itemList: Array<Item>,
   filter: ItemFilter
-): Array<ItemWithPurchseType> {
+): Array<Item> {
   let filteredList = itemList;
-
-  // 購入アイテムを表示しない設定のときはpurchseTypeがbuyのものを除く
-  if (filter.purchaseType != "buy") {
-    filteredList = filteredList.filter((pair) => pair.purchaseType != "buy");
-  }
-  // 売却アイテムを表示しない設定のときはpurchseTypeがsellのものを除く
-  if (filter.purchaseType != "sell") {
-    filteredList = filteredList.filter((pair) => pair.purchaseType != "sell");
-  }
 
   // ItemTypeでフィルターが設定されている場合は、そのItemTypeのみにする
   if (filter.showItemType != "All") {
     filteredList = filteredList.filter(
-      (pair) => pair.item.itemType == filter.showItemType
+      (item) => item.itemType == filter.showItemType
     );
   }
 
   // 識別不要アイテムを表示しない場合、ユニークフラグのないアイテムのみにする
   if (!filter.enableUnique) {
-    filteredList = filteredList.filter((pair) => !pair.item.unique);
+    filteredList = filteredList.filter((item) => !item.unique);
   }
 
   return filteredList;
@@ -142,7 +126,9 @@ export const useItemList = () => {
   const [filteredItemListState] = useAtom(filteredListStateAtom);
 
   function toggleItemOpened(value: string) {
-    const next = itemListState.groupedList.map((group) => {
+    const next = itemListState.groupedListSet[
+      itemListState.filter.purchaseType
+    ].map((group) => {
       return {
         ...group,
         opened: group.value == value ? !group.opened : group.opened,
@@ -150,7 +136,10 @@ export const useItemList = () => {
     });
     setItemListState({
       ...itemListState,
-      groupedList: next,
+      groupedListSet: {
+        ...itemListState.groupedListSet,
+        [itemListState.filter.purchaseType]: next,
+      },
     });
   }
 
