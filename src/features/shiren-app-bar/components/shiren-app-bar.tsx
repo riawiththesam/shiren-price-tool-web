@@ -1,13 +1,12 @@
-import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 import { FC } from "react";
 
 export interface ShirenAppBarProps {
   onClickDrawerOpen: () => void;
 }
 
-export const ShirenAppBar: FC<ShirenAppBarProps> = (props) => {
-  const { onClickDrawerOpen } = props;
+export const ShirenAppBar: FC<ShirenAppBarProps> = () => {
+  /*
   return (
     <AppBar position="static">
       <Toolbar>
@@ -21,6 +20,17 @@ export const ShirenAppBar: FC<ShirenAppBarProps> = (props) => {
         >
           <MenuIcon />
         </IconButton>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          シレン6ツール
+        </Typography>
+      </Toolbar>
+    </AppBar>
+  );
+  */
+
+  return (
+    <AppBar position="static">
+      <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           シレン6ツール
         </Typography>
