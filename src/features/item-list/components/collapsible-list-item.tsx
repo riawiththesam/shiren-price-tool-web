@@ -65,7 +65,7 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
         in={itemGroup.opened}
         timeout={200}
         unmountOnExit
-        sx={{ paddingLeft: "32px" }}
+        sx={{ paddingLeft: { xs: "0px", sm: "20px" } }}
       >
         <ItemListTable rows={itemGroup.itemList} />
       </Collapse>
