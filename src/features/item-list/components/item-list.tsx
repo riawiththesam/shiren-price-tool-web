@@ -23,7 +23,13 @@ export const ItemList: FC = () => {
         setEnableUnique={setEnableUnique}
       />
       <Divider />
-      <List sx={{ paddingX: "20px", flexGrow: 1, overflowY: "auto" }}>
+      <List
+        sx={{
+          paddingX: { xs: "0px", sm: "20px" },
+          flexGrow: 1,
+          overflowY: "auto",
+        }}
+      >
         {filteredItemListState.filteredList.map((group) => {
           return group.itemList.length > 0 ? (
             <CollapsibleListItem
