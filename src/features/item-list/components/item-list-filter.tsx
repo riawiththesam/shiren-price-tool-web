@@ -39,8 +39,8 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
   return (
     <Stack
       direction="row"
-      spacing={2}
-      sx={{ paddingX: "40px", alignItems: "center" }}
+      spacing={{ xs: 1, sm: 2 }}
+      sx={{ paddingX: { xs: "10px", sm: "40px" }, alignItems: "center" }}
     >
       <Box>金額</Box>
 
