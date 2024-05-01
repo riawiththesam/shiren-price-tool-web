@@ -22,8 +22,6 @@ export interface Item {
   state: ItemState;
   // アイテムが取りうる状態
   possibleStates: Array<ItemState>;
-  // 識別する必要のないアイテム
-  unique: boolean;
   master: MasterItem;
 }
 

@@ -115,7 +115,7 @@ function filterItemList(
 
   // 識別不要アイテムを表示しない場合、ユニークフラグのないアイテムのみにする
   if (!filter.enableUnique) {
-    filteredList = filteredList.filter((item) => !item.unique);
+    filteredList = filteredList.filter((item) => !item.master.unique);
   }
 
   return filteredList;
