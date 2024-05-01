@@ -1,5 +1,5 @@
 import range from "just-range";
-import { MasterItem, itemTypePossibleStatesMap } from "../../types/Item";
+import { TsueMasterItem, itemTypePossibleStatesMap } from "../../types/Item";
 
 export const list = {
   list: [
@@ -169,7 +169,7 @@ export const list = {
 /**
  * 上の杖名と本体価格から使用回数ごとの全杖リストを生成
  */
-const _fullList: ReadonlyArray<MasterItem> = list.list
+const _fullList: ReadonlyArray<TsueMasterItem> = list.list
   .map((item) => {
     return range(item.min, item.max + 1).map((index) => {
       return {
@@ -179,6 +179,8 @@ const _fullList: ReadonlyArray<MasterItem> = list.list
         itemType: "Tsue" as const,
         possibleStates: itemTypePossibleStatesMap["Tsue"],
         unique: item.unique,
+        defaultUsageLimitMax: item.max,
+        defaultUsageLimitMin: item.min,
       };
     });
   })

@@ -44,3 +44,25 @@ export interface MasterItem {
   // アイテムが取りうる状態
   possibleStates: Array<ItemState>;
 }
+
+export interface TsueMasterItem extends MasterItem {
+  itemType: "Tsue";
+  defaultUsageLimitMax: number;
+  defaultUsageLimitMin: number;
+}
+
+export function isTsueMasterItem(master: MasterItem): master is TsueMasterItem {
+  return master.itemType == "Tsue";
+}
+
+export interface TsuboMasterItem extends MasterItem {
+  itemType: "Tsubo";
+  defaultUsageLimitMax: number;
+  defaultUsageLimitMin: number;
+}
+
+export function isTsuboMasterItem(
+  master: MasterItem
+): master is TsuboMasterItem {
+  return master.itemType == "Tsubo";
+}

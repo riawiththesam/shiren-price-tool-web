@@ -7,7 +7,12 @@ import {
   DialogTitle,
 } from "@mui/material";
 import { FC } from "react";
-import { Item } from "../../../types/Item";
+import {
+  Item,
+  MasterItem,
+  isTsuboMasterItem,
+  isTsueMasterItem,
+} from "../../../types/Item";
 
 export interface Props {
   isOpened: boolean;
@@ -47,6 +52,7 @@ export const ItemDialog: FC<Props> = (props) => {
         <DialogContentText id="alert-dialog-description-item-state">
           {`状態: ${item.state} / ${item.master.possibleStates}`}
         </DialogContentText>
+        {defaultUsageLimitDialogContentText(item.master)}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} autoFocus>
@@ -55,4 +61,24 @@ export const ItemDialog: FC<Props> = (props) => {
       </DialogActions>
     </Dialog>
   );
+};
+
+const defaultUsageLimitDialogContentText = (master: MasterItem) => {
+  if (isTsueMasterItem(master)) {
+    return (
+      <DialogContentText id="alert-dialog-description-default-usage">
+        {`通常使用回数: ${master.defaultUsageLimitMin} ~ ${master.defaultUsageLimitMax}`}
+      </DialogContentText>
+    );
+  }
+
+  if (isTsuboMasterItem(master)) {
+    return (
+      <DialogContentText id="alert-dialog-description-default-usage">
+        {`通常使用回数: ${master.defaultUsageLimitMin} ~ ${master.defaultUsageLimitMax}`}
+      </DialogContentText>
+    );
+  }
+
+  return null;
 };
