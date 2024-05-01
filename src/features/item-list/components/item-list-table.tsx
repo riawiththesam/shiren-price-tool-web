@@ -68,12 +68,14 @@ function itemStateToTextColor(itemState: ItemState): string {
   }
 }
 
-export interface ItemListTableProps {
+export interface Props {
   rows: Array<Item>;
+  onRowClick: (item: Item) => void;
 }
 
-export const ItemListTable: FC<ItemListTableProps> = (props) => {
-  const { rows } = props;
+export const ItemListTable: FC<Props> = (props) => {
+  const { rows, onRowClick } = props;
+
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -91,7 +93,15 @@ export const ItemListTable: FC<ItemListTableProps> = (props) => {
           {rows.map((row, index) => (
             <TableRow
               key={index}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              sx={{
+                "&:hover": {
+                  cursor: "pointer",
+                },
+                "&:last-child td, &:last-child th": { border: 0 },
+              }}
+              onClick={() => {
+                onRowClick(row);
+              }}
             >
               <TableCell
                 component="th"

@@ -8,9 +8,11 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { ItemListTable } from "./item-list-table";
 import { ItemGroup } from "../hooks/use-item-list";
+import { ItemDialog } from "./ItemDialog";
+import { Item } from "../../../types/Item";
 
 interface CollapsibleListItemProps {
   itemGroup: ItemGroup;
@@ -20,8 +22,18 @@ interface CollapsibleListItemProps {
 export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
   const { itemGroup, onClick } = props;
 
+  const [isDialogOpened, setIsDialogOpened] = useState(false);
+
   const onClickButton = () => {
     onClick(itemGroup.value);
+  };
+
+  const onRowClick = (item: Item) => {
+    setIsDialogOpened(true);
+  };
+
+  const handleClose = () => {
+    setIsDialogOpened(false);
   };
 
   return (
@@ -67,8 +79,9 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
         unmountOnExit
         sx={{ paddingLeft: { xs: "0px", sm: "20px" } }}
       >
-        <ItemListTable rows={itemGroup.itemList} />
+        <ItemListTable rows={itemGroup.itemList} onRowClick={onRowClick} />
       </Collapse>
+      <ItemDialog isOpened={isDialogOpened} handleClose={handleClose} />
     </ListItem>
   );
 };
