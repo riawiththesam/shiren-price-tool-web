@@ -176,7 +176,7 @@ const _list = {
 const _fullList: Array<MasterItem> = _list.list.map((item) => {
   return {
     ...item,
-    itemType: "Tsue",
+    itemType: "Kusa",
   };
 });
 

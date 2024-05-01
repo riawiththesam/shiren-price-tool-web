@@ -35,8 +35,8 @@ export function mapToNoroi(master: MasterItem, itemType: ItemType): Item {
     buy: Math.floor(master.buy * itemStateRateMap["Noroi"]),
     sell: Math.floor(master.sell * itemStateRateMap["Noroi"]),
     state: "Noroi",
-    itemType,
     possibleStates: itemTypeToPossibleStates(itemType),
+    master: master,
   };
 }
 
@@ -50,8 +50,8 @@ export function mapToShukufuku(master: MasterItem, itemType: ItemType): Item {
     buy: Math.floor(master.buy * itemStateRateMap["Shukufuku"]),
     sell: Math.floor(master.sell * itemStateRateMap["Shukufuku"]),
     state: "Shukufuku",
-    itemType,
     possibleStates: itemTypeToPossibleStates(itemType),
+    master: master,
   };
 }
 
@@ -65,7 +65,7 @@ export function mapToNormal(master: MasterItem, itemType: ItemType): Item {
     buy: Math.floor(master.buy * itemStateRateMap["Normal"]),
     sell: Math.floor(master.sell * itemStateRateMap["Normal"]),
     state: "Normal",
-    itemType,
     possibleStates: itemTypeToPossibleStates(itemType),
+    master: master,
   };
 }

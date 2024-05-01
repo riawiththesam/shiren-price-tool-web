@@ -112,8 +112,8 @@ export const ItemListTable: FC<Props> = (props) => {
               </TableCell>
               <TableCell align="right">
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                  <img src={itemTypeToIcon(row.itemType)} />
-                  {itemTypeToText(row.itemType)}
+                  <img src={itemTypeToIcon(row.master.itemType)} />
+                  {itemTypeToText(row.master.itemType)}
                 </Box>
               </TableCell>
               <TableCell align="right">{row.defaultBuy}</TableCell>

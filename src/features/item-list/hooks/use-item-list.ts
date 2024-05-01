@@ -109,7 +109,7 @@ function filterItemList(
   // ItemTypeでフィルターが設定されている場合は、そのItemTypeのみにする
   if (filter.showItemType != "All") {
     filteredList = filteredList.filter(
-      (item) => item.itemType == filter.showItemType
+      (item) => item.master.itemType == filter.showItemType
     );
   }
 

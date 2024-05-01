@@ -30,7 +30,7 @@ export const ItemDialog: FC<Props> = (props) => {
       <DialogTitle id="alert-dialog-title">{`${item.name}`}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description-item-type">
-          {`種別: ${item.itemType}`}
+          {`種別: ${item.master.itemType}`}
         </DialogContentText>
         <DialogContentText id="alert-dialog-description-buy">
           {`購入: ${item.buy}`}

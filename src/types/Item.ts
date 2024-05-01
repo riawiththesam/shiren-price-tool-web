@@ -22,9 +22,9 @@ export interface Item {
   state: ItemState;
   // アイテムが取りうる状態
   possibleStates: Array<ItemState>;
-  itemType: ItemType;
   // 識別する必要のないアイテム
   unique: boolean;
+  master: MasterItem;
 }
 
 export interface MasterItem {
