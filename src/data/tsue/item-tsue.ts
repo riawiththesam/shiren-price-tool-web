@@ -176,6 +176,7 @@ const _fullList: ReadonlyArray<MasterItem> = list.list
         name: `${item.name}[${index}]`,
         buy: item.buy + index * 100,
         sell: item.sell + index * 40,
+        itemType: "Tsue" as const,
         unique: item.unique,
       };
     });

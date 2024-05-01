@@ -1,4 +1,6 @@
-export const list = {
+import { MasterItem } from "../../types/Item";
+
+const _list = {
   list: [
     {
       name: "雑草",
@@ -169,4 +171,15 @@ export const list = {
       unique: false,
     },
   ],
+};
+
+const _fullList: Array<MasterItem> = _list.list.map((item) => {
+  return {
+    ...item,
+    itemType: "Tsue",
+  };
+});
+
+export const fullList = {
+  list: _fullList,
 };

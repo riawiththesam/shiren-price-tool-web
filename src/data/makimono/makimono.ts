@@ -1,7 +1,7 @@
 import { Item } from "../../types/Item";
 import { PurchaseType } from "../../types/purchase";
 import { mapToNormal, mapToNoroi, mapToShukufuku } from "../item/item";
-import { list as makimonoMaster } from "./item-makimono";
+import { fullList as makimonoMaster } from "./item-makimono";
 
 /**
  * 巻物を価格で検索する

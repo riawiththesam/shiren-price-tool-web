@@ -1,4 +1,6 @@
-export const list = {
+import { MasterItem } from "../../types/Item";
+
+const _list = {
   list: [
     {
       name: "混乱の巻物",
@@ -231,4 +233,15 @@ export const list = {
       unique: true,
     },
   ],
+};
+
+const _fullList: Array<MasterItem> = _list.list.map((item) => {
+  return {
+    ...item,
+    itemType: "Makimono",
+  };
+});
+
+export const fullList = {
+  list: _fullList,
 };

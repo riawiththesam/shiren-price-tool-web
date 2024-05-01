@@ -32,6 +32,7 @@ export interface MasterItem {
   shortName?: string;
   buy: number;
   sell: number;
+  itemType: ItemType;
   // 識別する必要のないアイテム
   unique: boolean;
 }
