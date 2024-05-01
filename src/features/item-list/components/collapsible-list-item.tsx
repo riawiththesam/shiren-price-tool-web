@@ -11,6 +11,8 @@ import {
 import { FC } from "react";
 import { ItemListTable } from "./item-list-table";
 import { ItemGroup } from "../hooks/use-item-list";
+import { ItemDialog } from "./ItemDialog";
+import { useCollapsibleListItem } from "../hooks/use-collapsible-list-item";
 
 interface CollapsibleListItemProps {
   itemGroup: ItemGroup;
@@ -19,6 +21,7 @@ interface CollapsibleListItemProps {
 
 export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
   const { itemGroup, onClick } = props;
+  const { dialogState, setOpened, close } = useCollapsibleListItem();
 
   const onClickButton = () => {
     onClick(itemGroup.value);
@@ -67,8 +70,13 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
         unmountOnExit
         sx={{ paddingLeft: { xs: "0px", sm: "20px" } }}
       >
-        <ItemListTable rows={itemGroup.itemList} />
+        <ItemListTable rows={itemGroup.itemList} onRowClick={setOpened} />
       </Collapse>
+      <ItemDialog
+        isOpened={dialogState.isOpened}
+        item={dialogState.item}
+        handleClose={close}
+      />
     </ListItem>
   );
 };

@@ -1,4 +1,6 @@
-export const list = {
+import { MasterItem, itemTypePossibleStatesMap } from "../../types/Item";
+
+const _list = {
   list: [
     {
       name: "回復の腕輪",
@@ -227,4 +229,16 @@ export const list = {
       unique: false,
     },
   ],
+};
+
+const _fullList: Array<MasterItem> = _list.list.map((item) => {
+  return {
+    ...item,
+    itemType: "Udewa",
+    possibleStates: itemTypePossibleStatesMap["Udewa"],
+  };
+});
+
+export const fullList = {
+  list: _fullList,
 };

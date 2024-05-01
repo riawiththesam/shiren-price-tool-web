@@ -1,4 +1,6 @@
-export const list = {
+import { MasterItem, itemTypePossibleStatesMap } from "../../types/Item";
+
+const _list = {
   list: [
     {
       name: "混乱の巻物",
@@ -205,6 +207,7 @@ export const list = {
       buy: 1000,
       sell: 400,
       unique: true,
+      note: "識別済みで入手",
     },
     {
       name: "ねだやしの巻物",
@@ -223,12 +226,26 @@ export const list = {
       buy: 1000,
       sell: 400,
       unique: true,
+      note: "識別済みで入手。書き込みをキャンセルすることで呪い祝福の確認ができる",
     },
     {
       name: "ぬれた巻物",
       buy: 200,
       sell: 80,
       unique: true,
+      note: "モンスターの能力や、水路の地形などにより識別済みで入手",
     },
   ],
+};
+
+const _fullList: Array<MasterItem> = _list.list.map((item) => {
+  return {
+    ...item,
+    itemType: "Makimono",
+    possibleStates: itemTypePossibleStatesMap["Makimono"],
+  };
+});
+
+export const fullList = {
+  list: _fullList,
 };

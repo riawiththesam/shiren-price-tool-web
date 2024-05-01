@@ -16,11 +16,11 @@ export function findTsueList(
   purchaseType: PurchaseType
 ): Array<Item> {
   const noroiList: Array<Item> = tsueMaster.list
-    .map((item) => mapToNoroi(item, "Tsue"))
+    .map((item) => mapToNoroi(item))
     .filter((item) => item[purchaseType] == price);
 
   const normalList: Array<Item> = tsueMaster.list
-    .map((item) => mapToNormal(item, "Tsue"))
+    .map((item) => mapToNormal(item))
     .filter((item) => item[purchaseType] == price);
 
   return [...noroiList, ...normalList];
@@ -28,11 +28,11 @@ export function findTsueList(
 
 export function getAllTsueList() {
   const noroiList: Array<Item> = tsueMaster.list.map((item) =>
-    mapToNoroi(item, "Tsue")
+    mapToNoroi(item)
   );
 
   const normalList: Array<Item> = tsueMaster.list.map((item) =>
-    mapToNormal(item, "Tsue")
+    mapToNormal(item)
   );
 
   return [...noroiList, ...normalList];

@@ -1,5 +1,5 @@
 import range from "just-range";
-import { MasterItem } from "../../types/Item";
+import { TsuboMasterItem, itemTypePossibleStatesMap } from "../../types/Item";
 
 export const list = {
   list: [
@@ -139,6 +139,7 @@ export const list = {
       unique: true,
       min: 3,
       max: 5,
+      note: "識別済みで入手",
     },
     {
       name: "笑いの壺",
@@ -178,14 +179,19 @@ export const list = {
 /**
  * 上の壺名と本体価格から使用回数ごとの全壺リストを生成
  */
-const _fullList: ReadonlyArray<MasterItem> = list.list
+const _fullList: ReadonlyArray<TsuboMasterItem> = list.list
   .map((item) => {
     return range(item.min, item.max + 1).map((index) => {
       return {
         name: `${item.name}[${index}]`,
         buy: item.buy + index * 100,
         sell: item.sell + index * 40,
+        itemType: "Tsubo" as const,
+        possibleStates: itemTypePossibleStatesMap["Tsubo"],
         unique: item.unique,
+        note: item.note,
+        defaultUsageLimitMax: item.max,
+        defaultUsageLimitMin: item.min,
       };
     });
   })

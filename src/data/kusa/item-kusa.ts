@@ -1,10 +1,13 @@
-export const list = {
+import { MasterItem, itemTypePossibleStatesMap } from "../../types/Item";
+
+const _list = {
   list: [
     {
       name: "雑草",
       buy: 10,
       sell: 4,
       unique: true,
+      note: "モンスターの能力や、復活の草の効果により識別済みで入手",
     },
     {
       name: "薬草",
@@ -169,4 +172,16 @@ export const list = {
       unique: false,
     },
   ],
+};
+
+const _fullList: Array<MasterItem> = _list.list.map((item) => {
+  return {
+    ...item,
+    itemType: "Kusa",
+    possibleStates: itemTypePossibleStatesMap["Kusa"],
+  };
+});
+
+export const fullList = {
+  list: _fullList,
 };
