@@ -9,6 +9,8 @@ import {
 import { FC } from "react";
 import {
   Item,
+  ItemState,
+  ItemType,
   MasterItem,
   isTsuboMasterItem,
   isTsueMasterItem,
@@ -35,7 +37,7 @@ export const ItemDialog: FC<Props> = (props) => {
       <DialogTitle id="alert-dialog-title">{`${item.name}`}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description-item-type">
-          {`種別: ${item.master.itemType}`}
+          {`種別: ${itemTypeToText(item.master.itemType)}`}
         </DialogContentText>
         <DialogContentText id="alert-dialog-description-buy">
           {`購入: ${item.buy}`}
@@ -50,7 +52,9 @@ export const ItemDialog: FC<Props> = (props) => {
           {`定価売却: ${item.defaultSell}`}
         </DialogContentText>
         <DialogContentText id="alert-dialog-description-item-state">
-          {`状態: ${item.state} / ${item.master.possibleStates}`}
+          {`状態: ${itemStateToText(item.state)} / ${possibleStatesToText(
+            item.master.possibleStates
+          )}`}
         </DialogContentText>
         {defaultUsageLimitDialogContentText(item.master)}
         {noteDialogContentText(item.master)}
@@ -63,6 +67,40 @@ export const ItemDialog: FC<Props> = (props) => {
     </Dialog>
   );
 };
+
+function itemTypeToText(itemType: ItemType) {
+  switch (itemType) {
+    case "Makimono":
+      return "巻物";
+    case "Kusa":
+      return "草";
+    case "Udewa":
+      return "腕輪";
+    case "Tsue":
+      return "杖";
+    case "Tsubo":
+      return "壺";
+  }
+}
+
+function possibleStatesToText(possibleStates: Array<ItemState>): string {
+  return possibleStates
+    .map((itemState) => {
+      return itemStateToText(itemState);
+    })
+    .join(",");
+}
+
+function itemStateToText(itemState: ItemState) {
+  switch (itemState) {
+    case "Normal":
+      return "通常";
+    case "Noroi":
+      return "呪い";
+    case "Shukufuku":
+      return "祝福";
+  }
+}
 
 const defaultUsageLimitDialogContentText = (master: MasterItem) => {
   if (isTsueMasterItem(master)) {
