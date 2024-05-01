@@ -10,6 +10,21 @@ export const itemStateRateMap: ItemStateRateMapType = {
   Shukufuku: 2,
 };
 
+function itemTypeToPossibleStates(itemType: ItemType): Array<ItemState> {
+  switch (itemType) {
+    case "Makimono":
+      return ["Noroi", "Shukufuku", "Normal"];
+    case "Kusa":
+      return ["Noroi", "Shukufuku", "Normal"];
+    case "Udewa":
+      return ["Noroi", "Normal"];
+    case "Tsue":
+      return ["Noroi", "Normal"];
+    case "Tsubo":
+      return ["Noroi", "Normal"];
+  }
+}
+
 export function mapToNoroi(master: MasterItem, itemType: ItemType): Item {
   return {
     name: master.name,
@@ -21,6 +36,7 @@ export function mapToNoroi(master: MasterItem, itemType: ItemType): Item {
     sell: Math.floor(master.sell * itemStateRateMap["Noroi"]),
     state: "Noroi",
     itemType,
+    possibleStates: itemTypeToPossibleStates(itemType),
   };
 }
 
@@ -35,6 +51,7 @@ export function mapToShukufuku(master: MasterItem, itemType: ItemType): Item {
     sell: Math.floor(master.sell * itemStateRateMap["Shukufuku"]),
     state: "Shukufuku",
     itemType,
+    possibleStates: itemTypeToPossibleStates(itemType),
   };
 }
 
@@ -49,5 +66,6 @@ export function mapToNormal(master: MasterItem, itemType: ItemType): Item {
     sell: Math.floor(master.sell * itemStateRateMap["Normal"]),
     state: "Normal",
     itemType,
+    possibleStates: itemTypeToPossibleStates(itemType),
   };
 }

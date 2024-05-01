@@ -45,7 +45,7 @@ export const ItemDialog: FC<Props> = (props) => {
           {`定価売却: ${item.defaultSell}`}
         </DialogContentText>
         <DialogContentText id="alert-dialog-description-item-state">
-          {`状態: ${item.state}`}
+          {`状態: ${item.state} / ${item.possibleStates}`}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

@@ -20,6 +20,8 @@ export interface Item {
   buy: number;
   sell: number;
   state: ItemState;
+  // アイテムが取りうる状態
+  possibleStates: Array<ItemState>;
   itemType: ItemType;
   // 識別する必要のないアイテム
   unique: boolean;
