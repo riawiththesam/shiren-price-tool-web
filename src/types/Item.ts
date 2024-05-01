@@ -43,6 +43,7 @@ export interface MasterItem {
   unique: boolean;
   // アイテムが取りうる状態
   possibleStates: Array<ItemState>;
+  note?: string;
 }
 
 export interface TsueMasterItem extends MasterItem {

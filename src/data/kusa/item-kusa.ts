@@ -7,6 +7,7 @@ const _list = {
       buy: 10,
       sell: 4,
       unique: true,
+      note: "モンスターの能力や、復活の草の効果により識別済みで入手",
     },
     {
       name: "薬草",

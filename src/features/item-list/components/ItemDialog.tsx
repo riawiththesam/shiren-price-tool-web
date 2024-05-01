@@ -53,6 +53,7 @@ export const ItemDialog: FC<Props> = (props) => {
           {`状態: ${item.state} / ${item.master.possibleStates}`}
         </DialogContentText>
         {defaultUsageLimitDialogContentText(item.master)}
+        {noteDialogContentText(item.master)}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} autoFocus>
@@ -80,5 +81,17 @@ const defaultUsageLimitDialogContentText = (master: MasterItem) => {
     );
   }
 
+  return null;
+};
+
+const noteDialogContentText = (master: MasterItem) => {
+  const note = master.note;
+  if (note != null) {
+    return (
+      <DialogContentText id="alert-dialog-description-note">
+        {`備考: ${note}`}
+      </DialogContentText>
+    );
+  }
   return null;
 };

@@ -139,6 +139,7 @@ export const list = {
       unique: true,
       min: 3,
       max: 5,
+      note: "識別済みで入手",
     },
     {
       name: "笑いの壺",
@@ -188,6 +189,7 @@ const _fullList: ReadonlyArray<TsuboMasterItem> = list.list
         itemType: "Tsubo" as const,
         possibleStates: itemTypePossibleStatesMap["Tsubo"],
         unique: item.unique,
+        note: item.note,
         defaultUsageLimitMax: item.max,
         defaultUsageLimitMin: item.min,
       };
