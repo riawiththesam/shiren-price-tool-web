@@ -12,6 +12,16 @@ export const ItemTypeList = [
 
 export type ItemType = (typeof ItemTypeList)[number];
 
+export const itemTypePossibleStatesMap: {
+  [key in ItemType]: Array<ItemState>;
+} = {
+  Makimono: ["Noroi", "Shukufuku", "Normal"],
+  Kusa: ["Noroi", "Shukufuku", "Normal"],
+  Tsubo: ["Noroi", "Normal"],
+  Tsue: ["Noroi", "Normal"],
+  Udewa: ["Noroi", "Normal"],
+};
+
 export interface Item {
   name: string;
   shortName: string;
@@ -20,8 +30,6 @@ export interface Item {
   buy: number;
   sell: number;
   state: ItemState;
-  // アイテムが取りうる状態
-  possibleStates: Array<ItemState>;
   master: MasterItem;
 }
 
@@ -33,4 +41,6 @@ export interface MasterItem {
   itemType: ItemType;
   // 識別する必要のないアイテム
   unique: boolean;
+  // アイテムが取りうる状態
+  possibleStates: Array<ItemState>;
 }

@@ -1,5 +1,5 @@
 import range from "just-range";
-import { MasterItem } from "../../types/Item";
+import { MasterItem, itemTypePossibleStatesMap } from "../../types/Item";
 
 export const list = {
   list: [
@@ -177,6 +177,7 @@ const _fullList: ReadonlyArray<MasterItem> = list.list
         buy: item.buy + index * 100,
         sell: item.sell + index * 40,
         itemType: "Tsue" as const,
+        possibleStates: itemTypePossibleStatesMap["Tsue"],
         unique: item.unique,
       };
     });

@@ -1,4 +1,4 @@
-import { MasterItem } from "../../types/Item";
+import { MasterItem, itemTypePossibleStatesMap } from "../../types/Item";
 
 const _list = {
   list: [
@@ -235,6 +235,7 @@ const _fullList: Array<MasterItem> = _list.list.map((item) => {
   return {
     ...item,
     itemType: "Udewa",
+    possibleStates: itemTypePossibleStatesMap["Udewa"],
   };
 });
 
