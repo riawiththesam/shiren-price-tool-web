@@ -72,7 +72,11 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
       >
         <ItemListTable rows={itemGroup.itemList} onRowClick={setOpened} />
       </Collapse>
-      <ItemDialog isOpened={dialogState.isOpened} handleClose={close} />
+      <ItemDialog
+        isOpened={dialogState.isOpened}
+        item={dialogState.item}
+        handleClose={close}
+      />
     </ListItem>
   );
 };
