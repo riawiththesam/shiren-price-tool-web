@@ -6,6 +6,7 @@ import {
   RadioGroup,
   Stack,
   Switch,
+  styled,
 } from "@mui/material";
 import { ChangeEvent, FC } from "react";
 import { ItemFilter } from "../hooks/use-item-list";
@@ -47,14 +48,14 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
       <Divider orientation="vertical" />
 
       <RadioGroup row onChange={handleOnChangeShowBuyOrSell}>
-        <FormControlLabel
+        <StyledRadioFormControlLabel
           value="buy"
           control={
             <Radio checked={filter.purchaseType == "buy"} size="small" />
           }
           label="買"
         />
-        <FormControlLabel
+        <StyledRadioFormControlLabel
           value="sell"
           control={
             <Radio checked={filter.purchaseType == "sell"} size="small" />
@@ -66,42 +67,42 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
       <Divider orientation="vertical" />
 
       <RadioGroup row onChange={handleOnChangeShowItemType}>
-        <FormControlLabel
+        <StyledRadioFormControlLabel
           value="All"
           control={
             <Radio checked={filter.showItemType == "All"} size="small" />
           }
           label="全"
         />
-        <FormControlLabel
+        <StyledRadioFormControlLabel
           value="Kusa"
           control={
             <Radio checked={filter.showItemType == "Kusa"} size="small" />
           }
           label="草"
         />
-        <FormControlLabel
+        <StyledRadioFormControlLabel
           value="Makimono"
           control={
             <Radio checked={filter.showItemType == "Makimono"} size="small" />
           }
           label="巻"
         />
-        <FormControlLabel
+        <StyledRadioFormControlLabel
           value="Tsubo"
           control={
             <Radio checked={filter.showItemType == "Tsubo"} size="small" />
           }
           label="壺"
         />
-        <FormControlLabel
+        <StyledRadioFormControlLabel
           value="Tsue"
           control={
             <Radio checked={filter.showItemType == "Tsue"} size="small" />
           }
           label="杖"
         />
-        <FormControlLabel
+        <StyledRadioFormControlLabel
           value="Udewa"
           control={
             <Radio checked={filter.showItemType == "Udewa"} size="small" />
@@ -126,3 +127,13 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
     </Stack>
   );
 };
+
+/**
+ * ラジオボタンとラベルの間隔を狭めたフォーム
+ */
+const StyledRadioFormControlLabel = styled(FormControlLabel)(() => ({
+  "&>.MuiFormControlLabel-label": {
+    position: "relative",
+    left: "-5px",
+  },
+}));
