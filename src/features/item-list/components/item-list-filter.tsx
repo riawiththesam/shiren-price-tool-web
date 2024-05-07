@@ -1,6 +1,5 @@
 import {
   Box,
-  Divider,
   FormControlLabel,
   Radio,
   RadioGroup,
@@ -41,11 +40,16 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
     <Stack
       direction="row"
       spacing={{ xs: 1, sm: 2 }}
-      sx={{ paddingX: { xs: "10px", sm: "40px" }, alignItems: "center" }}
+      sx={{
+        paddingX: { xs: "10px", sm: "40px" },
+        alignItems: "stretch",
+        borderBottom: "1px solid lightgray",
+        "& > :not(:last-child)": {
+          borderRight: "1px solid lightgray",
+        },
+      }}
     >
       <Box>金額</Box>
-
-      <Divider orientation="vertical" />
 
       <RadioGroup row onChange={handleOnChangeShowBuyOrSell}>
         <StyledRadioFormControlLabel
@@ -63,8 +67,6 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
           label="売"
         />
       </RadioGroup>
-
-      <Divider orientation="vertical" />
 
       <RadioGroup row onChange={handleOnChangeShowItemType}>
         <StyledRadioFormControlLabel
@@ -110,8 +112,6 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
           label="腕"
         />
       </RadioGroup>
-
-      <Divider orientation="vertical" />
 
       <FormControlLabel
         value="unique-item"
