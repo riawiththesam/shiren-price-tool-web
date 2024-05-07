@@ -46,11 +46,7 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
 
       <Divider orientation="vertical" />
 
-      <RadioGroup
-        sx={{ gap: "0px 10px" }}
-        row
-        onChange={handleOnChangeShowBuyOrSell}
-      >
+      <RadioGroup row onChange={handleOnChangeShowBuyOrSell}>
         <FormControlLabel
           value="buy"
           control={
@@ -69,11 +65,7 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
 
       <Divider orientation="vertical" />
 
-      <RadioGroup
-        sx={{ gap: "0px 10px" }}
-        row
-        onChange={handleOnChangeShowItemType}
-      >
+      <RadioGroup row onChange={handleOnChangeShowItemType}>
         <FormControlLabel
           value="All"
           control={
