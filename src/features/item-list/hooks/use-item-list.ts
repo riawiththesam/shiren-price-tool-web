@@ -9,7 +9,7 @@ import { PurchaseType } from "../../../types/purchase";
 import { atom, useAtom } from "jotai";
 
 export interface ItemFilter {
-  purchaseType: PurchaseType;
+  purchaseType: PurchaseType | "all";
   showItemType: ItemType | "All";
   enableUnique: boolean;
 }
@@ -24,6 +24,7 @@ interface ItemListState {
   groupedListSet: {
     buy: Array<ItemGroup>;
     sell: Array<ItemGroup>;
+    all: Array<ItemGroup>;
   };
   filter: ItemFilter;
 }
@@ -51,11 +52,19 @@ const initialSellGroupedList = getFullGroupedList("sell").map((group) => {
     opened: false,
   };
 });
+const initialAllGroupedList = getAllGroupedList().map((group) => {
+  return {
+    value: group.value,
+    itemList: group.itemList,
+    opened: false,
+  };
+});
 
 const itemListStateAtom = atom<ItemListState>({
   groupedListSet: {
     buy: initialBuyGroupedList,
     sell: initialSellGroupedList,
+    all: initialAllGroupedList,
   },
   filter: initialFilter,
 });
@@ -74,6 +83,30 @@ const filteredListStateAtom = atom<FilterdItemListState>((get) => {
   };
 });
 
+function getAllGroupedList(): Array<{
+  value: string;
+  itemList: Item[];
+}> {
+  const buyGroup = getFullGroupedList("buy");
+  const sellGroup = getFullGroupedList("sell");
+  const combinedGroup = [...buyGroup];
+
+  for (const sellItem of sellGroup) {
+    const targetGroup = combinedGroup.find(
+      (item) => item.value == sellItem.value
+    );
+    if (targetGroup != null) {
+      targetGroup.itemList = [...targetGroup.itemList, ...sellItem.itemList];
+    } else {
+      combinedGroup.push(sellItem);
+    }
+  }
+
+  return combinedGroup.sort(
+    (a, b) => Number.parseInt(a.value, 10) - Number.parseInt(b.value, 10)
+  );
+}
+
 function getFullGroupedList(purchaseType: PurchaseType): Array<{
   value: string;
   itemList: Item[];
@@ -89,6 +122,7 @@ function getFullGroupedList(purchaseType: PurchaseType): Array<{
     return a.buy - b.buy;
   });
 
+  // buy or sell の金額ごとにまとめる
   const grouped = groupBy(rawItemList, (item) => item[purchaseType]);
   const groupedList = Object.entries(grouped).map(([value, itemList]) => {
     return {
@@ -143,7 +177,7 @@ export const useItemList = () => {
     });
   }
 
-  function setPurchaseType(purchaseType: PurchaseType) {
+  function setPurchaseType(purchaseType: PurchaseType | "all") {
     setItemListState({
       ...itemListState,
       filter: {

@@ -29,10 +29,10 @@ export const ItemList: FC = () => {
           overflowY: "auto",
         }}
       >
-        {filteredItemListState.filteredList.map((group) => {
+        {filteredItemListState.filteredList.map((group, index) => {
           return group.itemList.length > 0 ? (
             <CollapsibleListItem
-              key={group.value}
+              key={index}
               itemGroup={group}
               onClick={toggleItemOpened}
             />

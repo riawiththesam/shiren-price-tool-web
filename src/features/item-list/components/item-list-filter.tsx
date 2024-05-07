@@ -13,7 +13,7 @@ import { ItemType } from "../../../types/Item";
 import { PurchaseType } from "../../../types/purchase";
 
 export interface ItemListSubheaderProps {
-  setPurchaseType: (purchaseType: PurchaseType) => void;
+  setPurchaseType: (purchaseType: PurchaseType | "all") => void;
   setItemType: (itemType: ItemType | "All") => void;
   setEnableUnique: (enable: boolean) => void;
   filter: ItemFilter;
@@ -25,7 +25,7 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
   const handleOnChangeShowBuyOrSell = (
     event: ChangeEvent<HTMLInputElement>
   ) => {
-    setPurchaseType(event.target.value as PurchaseType);
+    setPurchaseType(event.target.value as PurchaseType | "all");
   };
 
   const handleOnChangeShowItemType = (event: ChangeEvent<HTMLInputElement>) => {
@@ -54,6 +54,13 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
       </Box>
 
       <RadioGroup row onChange={handleOnChangeShowBuyOrSell}>
+        <StyledRadioFormControlLabel
+          value="all"
+          control={
+            <Radio checked={filter.purchaseType == "all"} size="small" />
+          }
+          label="全"
+        />
         <StyledRadioFormControlLabel
           value="buy"
           control={
