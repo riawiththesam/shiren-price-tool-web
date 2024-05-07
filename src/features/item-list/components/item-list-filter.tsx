@@ -49,7 +49,9 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
         },
       }}
     >
-      <Box>金額</Box>
+      <Box sx={{ display: "flex", alignItems: "center", paddingRight: "16px" }}>
+        金額
+      </Box>
 
       <RadioGroup row onChange={handleOnChangeShowBuyOrSell}>
         <StyledRadioFormControlLabel
