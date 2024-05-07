@@ -1,11 +1,11 @@
 import {
   Box,
-  Divider,
   FormControlLabel,
   Radio,
   RadioGroup,
   Stack,
   Switch,
+  styled,
 } from "@mui/material";
 import { ChangeEvent, FC } from "react";
 import { ItemFilter } from "../hooks/use-item-list";
@@ -13,7 +13,7 @@ import { ItemType } from "../../../types/Item";
 import { PurchaseType } from "../../../types/purchase";
 
 export interface ItemListSubheaderProps {
-  setPurchaseType: (purchaseType: PurchaseType) => void;
+  setPurchaseType: (purchaseType: PurchaseType | "all") => void;
   setItemType: (itemType: ItemType | "All") => void;
   setEnableUnique: (enable: boolean) => void;
   filter: ItemFilter;
@@ -25,7 +25,7 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
   const handleOnChangeShowBuyOrSell = (
     event: ChangeEvent<HTMLInputElement>
   ) => {
-    setPurchaseType(event.target.value as PurchaseType);
+    setPurchaseType(event.target.value as PurchaseType | "all");
   };
 
   const handleOnChangeShowItemType = (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,85 +40,87 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
     <Stack
       direction="row"
       spacing={{ xs: 1, sm: 2 }}
-      sx={{ paddingX: { xs: "10px", sm: "40px" }, alignItems: "center" }}
+      sx={{
+        paddingX: { xs: "10px", sm: "40px" },
+        alignItems: "stretch",
+        borderBottom: "1px solid lightgray",
+        "& > :not(:last-child)": {
+          borderRight: "1px solid lightgray",
+        },
+      }}
     >
-      <Box>金額</Box>
+      <Box sx={{ display: "flex", alignItems: "center", paddingRight: "16px" }}>
+        金額
+      </Box>
 
-      <Divider orientation="vertical" />
-
-      <RadioGroup
-        sx={{ gap: "0px 10px" }}
-        row
-        onChange={handleOnChangeShowBuyOrSell}
-      >
-        <FormControlLabel
+      <RadioGroup row onChange={handleOnChangeShowBuyOrSell}>
+        <StyledRadioFormControlLabel
           value="buy"
           control={
             <Radio checked={filter.purchaseType == "buy"} size="small" />
           }
           label="買"
         />
-        <FormControlLabel
+        <StyledRadioFormControlLabel
           value="sell"
           control={
             <Radio checked={filter.purchaseType == "sell"} size="small" />
           }
           label="売"
         />
-      </RadioGroup>
-
-      <Divider orientation="vertical" />
-
-      <RadioGroup
-        sx={{ gap: "0px 10px" }}
-        row
-        onChange={handleOnChangeShowItemType}
-      >
-        <FormControlLabel
-          value="All"
+        <StyledRadioFormControlLabel
+          value="all"
           control={
-            <Radio checked={filter.showItemType == "All"} size="small" />
+            <Radio checked={filter.purchaseType == "all"} size="small" />
           }
           label="全"
         />
-        <FormControlLabel
+      </RadioGroup>
+
+      <RadioGroup row onChange={handleOnChangeShowItemType}>
+        <StyledRadioFormControlLabel
           value="Kusa"
           control={
             <Radio checked={filter.showItemType == "Kusa"} size="small" />
           }
           label="草"
         />
-        <FormControlLabel
+        <StyledRadioFormControlLabel
           value="Makimono"
           control={
             <Radio checked={filter.showItemType == "Makimono"} size="small" />
           }
           label="巻"
         />
-        <FormControlLabel
+        <StyledRadioFormControlLabel
           value="Tsubo"
           control={
             <Radio checked={filter.showItemType == "Tsubo"} size="small" />
           }
           label="壺"
         />
-        <FormControlLabel
+        <StyledRadioFormControlLabel
           value="Tsue"
           control={
             <Radio checked={filter.showItemType == "Tsue"} size="small" />
           }
           label="杖"
         />
-        <FormControlLabel
+        <StyledRadioFormControlLabel
           value="Udewa"
           control={
             <Radio checked={filter.showItemType == "Udewa"} size="small" />
           }
           label="腕"
         />
+        <StyledRadioFormControlLabel
+          value="All"
+          control={
+            <Radio checked={filter.showItemType == "All"} size="small" />
+          }
+          label="全"
+        />
       </RadioGroup>
-
-      <Divider orientation="vertical" />
 
       <FormControlLabel
         value="unique-item"
@@ -134,3 +136,13 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
     </Stack>
   );
 };
+
+/**
+ * ラジオボタンとラベルの間隔を狭めたフォーム
+ */
+const StyledRadioFormControlLabel = styled(FormControlLabel)(() => ({
+  "&>.MuiFormControlLabel-label": {
+    position: "relative",
+    left: "-5px",
+  },
+}));

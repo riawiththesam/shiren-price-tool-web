@@ -1,4 +1,4 @@
-import { Box, Divider, List } from "@mui/material";
+import { Box, List } from "@mui/material";
 import { FC } from "react";
 import { useItemList } from "../hooks/use-item-list";
 import { CollapsibleListItem } from "./collapsible-list-item";
@@ -22,7 +22,6 @@ export const ItemList: FC = () => {
         setItemType={setItemType}
         setEnableUnique={setEnableUnique}
       />
-      <Divider />
       <List
         sx={{
           paddingX: { xs: "0px", sm: "20px" },
@@ -30,10 +29,10 @@ export const ItemList: FC = () => {
           overflowY: "auto",
         }}
       >
-        {filteredItemListState.filteredList.map((group) => {
+        {filteredItemListState.filteredList.map((group, index) => {
           return group.itemList.length > 0 ? (
             <CollapsibleListItem
-              key={group.value}
+              key={index}
               itemGroup={group}
               onClick={toggleItemOpened}
             />
