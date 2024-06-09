@@ -6,6 +6,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { Analytics } from "@vercel/analytics/react";
 
 const theme = createTheme();
 
@@ -15,5 +16,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <CssBaseline />
       <App />
     </ThemeProvider>
+    <Analytics />
   </React.StrictMode>
 );
