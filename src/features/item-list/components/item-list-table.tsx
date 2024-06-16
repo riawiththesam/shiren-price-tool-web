@@ -8,7 +8,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import MakimonoIcon from "../../../assets/makimono.png";
 import KusaIcon from "../../../assets/kusa.png";
 import TsueIcon from "../../../assets/tsue.png";
@@ -81,12 +81,12 @@ export const ItemListTable: FC<Props> = (props) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>アイテム名</TableCell>
-            <TableCell align="right">種別</TableCell>
-            <TableCell align="right">元値</TableCell>
-            <TableCell align="right">購入</TableCell>
-            <TableCell align="right">売却</TableCell>
-            <TableCell align="right">状態</TableCell>
+            <StyledTableCell>アイテム名</StyledTableCell>
+            <StyledTableCell align="right">種別</StyledTableCell>
+            <StyledTableCell align="right">元値</StyledTableCell>
+            <StyledTableCell align="right">購入</StyledTableCell>
+            <StyledTableCell align="right">売却</StyledTableCell>
+            <StyledTableCell align="right">状態</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -103,27 +103,42 @@ export const ItemListTable: FC<Props> = (props) => {
                 onRowClick(row);
               }}
             >
-              <TableCell
-                component="th"
-                scope="row"
-                sx={{ color: itemStateToTextColor(row.state) }}
-              >
-                {row.name}
-              </TableCell>
-              <TableCell align="right">
+              <StyledTableCell>
+                <Box
+                  component={"span"}
+                  sx={{ color: itemStateToTextColor(row.state) }}
+                >
+                  {row.name}
+                </Box>
+              </StyledTableCell>
+              <StyledTableCell align="right">
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                   <img src={itemTypeToIcon(row.master.itemType)} />
                   {itemTypeToText(row.master.itemType)}
                 </Box>
-              </TableCell>
-              <TableCell align="right">{row.defaultBuy}</TableCell>
-              <TableCell align="right">{row.buy}</TableCell>
-              <TableCell align="right">{row.sell}</TableCell>
-              <TableCell align="right">{itemStateToText(row.state)}</TableCell>
+              </StyledTableCell>
+              <StyledTableCell align="right">{row.defaultBuy}</StyledTableCell>
+              <StyledTableCell align="right">{row.buy}</StyledTableCell>
+              <StyledTableCell align="right">{row.sell}</StyledTableCell>
+              <StyledTableCell align="right">
+                {itemStateToText(row.state)}
+              </StyledTableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+  );
+};
+
+interface StyledTableCellProps {
+  align?: "right";
+  children: ReactNode;
+}
+const StyledTableCell: FC<StyledTableCellProps> = (props) => {
+  return (
+    <TableCell sx={{ padding: "5px" }} align={props.align ?? "inherit"}>
+      {props.children}
+    </TableCell>
   );
 };
