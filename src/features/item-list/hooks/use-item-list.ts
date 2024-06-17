@@ -7,6 +7,7 @@ import { getAllUdewaList } from "../../../data/udewa/udewa";
 import { Item, ItemType } from "../../../types/Item";
 import { PurchaseType } from "../../../types/purchase";
 import { atom, useAtom } from "jotai";
+import { useEffect } from "react";
 
 export interface ItemFilter {
   purchaseType: PurchaseType | "all";
@@ -38,33 +39,12 @@ const initialFilter: ItemFilter = {
   showItemType: "Kusa",
   enableUnique: false,
 };
-const initialBuyGroupedList = getFullGroupedList("buy").map((group) => {
-  return {
-    value: group.value,
-    itemList: group.itemList,
-    opened: false,
-  };
-});
-const initialSellGroupedList = getFullGroupedList("sell").map((group) => {
-  return {
-    value: group.value,
-    itemList: group.itemList,
-    opened: false,
-  };
-});
-const initialAllGroupedList = getAllGroupedList().map((group) => {
-  return {
-    value: group.value,
-    itemList: group.itemList,
-    opened: false,
-  };
-});
 
 const itemListStateAtom = atom<ItemListState>({
   groupedListSet: {
-    buy: initialBuyGroupedList,
-    sell: initialSellGroupedList,
-    all: initialAllGroupedList,
+    buy: [],
+    sell: [],
+    all: [],
   },
   filter: initialFilter,
 });
@@ -158,6 +138,40 @@ function filterItemList(
 export const useItemList = () => {
   const [itemListState, setItemListState] = useAtom(itemListStateAtom);
   const [filteredItemListState] = useAtom(filteredListStateAtom);
+
+  useEffect(() => {
+    const initialBuyGroupedList = getFullGroupedList("buy").map((group) => {
+      return {
+        value: group.value,
+        itemList: group.itemList,
+        opened: false,
+      };
+    });
+    const initialSellGroupedList = getFullGroupedList("sell").map((group) => {
+      return {
+        value: group.value,
+        itemList: group.itemList,
+        opened: false,
+      };
+    });
+    const initialAllGroupedList = getAllGroupedList().map((group) => {
+      return {
+        value: group.value,
+        itemList: group.itemList,
+        opened: false,
+      };
+    });
+    setItemListState((prev) => {
+      return {
+        ...prev,
+        groupedListSet: {
+          buy: initialBuyGroupedList,
+          sell: initialSellGroupedList,
+          all: initialAllGroupedList,
+        },
+      };
+    });
+  }, [setItemListState]);
 
   function toggleItemOpened(value: string) {
     const next = itemListState.groupedListSet[
