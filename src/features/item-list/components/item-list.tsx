@@ -9,7 +9,6 @@ export const ItemList: FC = () => {
     itemListState,
     filteredItemListState,
     setPurchaseType,
-    toggleItemOpened,
     setEnableUnique,
     setItemType,
   } = useItemList();
@@ -31,11 +30,7 @@ export const ItemList: FC = () => {
       >
         {filteredItemListState.filteredList.map((group, index) => {
           return group.itemList.length > 0 ? (
-            <CollapsibleListItem
-              key={index}
-              itemGroup={group}
-              onClick={toggleItemOpened}
-            />
+            <CollapsibleListItem key={index} itemGroup={group} />
           ) : null;
         })}
       </List>

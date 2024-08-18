@@ -17,11 +17,10 @@ import { useCollapsibleListItem } from "../hooks/use-collapsible-list-item";
 
 interface CollapsibleListItemProps {
   itemGroup: ItemGroup;
-  onClick: (value: string) => void;
 }
 
 export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
-  const { itemGroup, onClick } = props;
+  const { itemGroup } = props;
   const { dialogState, setOpened, close } = useCollapsibleListItem();
   const [tableOpened, setTableOpened] = useState(false);
 
