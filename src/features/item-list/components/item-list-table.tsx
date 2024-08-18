@@ -69,12 +69,13 @@ function itemStateToTextColor(itemState: ItemState): string {
 }
 
 export interface Props {
+  tablePrice: number;
   rows: Array<Item>;
   onRowClick: (item: Item) => void;
 }
 
 export const ItemListTable: FC<Props> = (props) => {
-  const { rows, onRowClick } = props;
+  const { tablePrice, rows, onRowClick } = props;
 
   return (
     <TableContainer component={Paper}>
@@ -117,9 +118,24 @@ export const ItemListTable: FC<Props> = (props) => {
                   {itemTypeToText(row.master.itemType)}
                 </Box>
               </StyledTableCell>
-              <StyledTableCell align="right">{row.defaultBuy}</StyledTableCell>
-              <StyledTableCell align="right">{row.buy}</StyledTableCell>
-              <StyledTableCell align="right">{row.sell}</StyledTableCell>
+              <StyledTableCell
+                align="right"
+                color={tablePrice == row.defaultBuy ? "orange" : undefined}
+              >
+                {row.defaultBuy}
+              </StyledTableCell>
+              <StyledTableCell
+                align="right"
+                color={tablePrice == row.buy ? "orange" : undefined}
+              >
+                {row.buy}
+              </StyledTableCell>
+              <StyledTableCell
+                align="right"
+                color={tablePrice == row.sell ? "orange" : undefined}
+              >
+                {row.sell}
+              </StyledTableCell>
               <StyledTableCell align="right">
                 {itemStateToText(row.state)}
               </StyledTableCell>
@@ -134,10 +150,14 @@ export const ItemListTable: FC<Props> = (props) => {
 interface StyledTableCellProps {
   align?: "right";
   children: ReactNode;
+  color?: "black" | "orange";
 }
 const StyledTableCell: FC<StyledTableCellProps> = (props) => {
   return (
-    <TableCell sx={{ padding: "5px" }} align={props.align ?? "inherit"}>
+    <TableCell
+      sx={{ padding: "5px", color: props.color }}
+      align={props.align ?? "inherit"}
+    >
       {props.children}
     </TableCell>
   );
