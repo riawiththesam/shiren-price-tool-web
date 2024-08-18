@@ -70,7 +70,11 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
         unmountOnExit
         sx={{ paddingLeft: { xs: "0px", sm: "20px" } }}
       >
-        <ItemListTable rows={itemGroup.itemList} onRowClick={setOpened} />
+        <ItemListTable
+          tablePrice={Number.parseInt(itemGroup.value)}
+          rows={itemGroup.itemList}
+          onRowClick={setOpened}
+        />
       </Collapse>
       <ItemDialog
         isOpened={dialogState.isOpened}
