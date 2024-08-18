@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import Fade from "@mui/material/Fade";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { ItemListTable } from "./item-list-table";
 import { ItemGroup } from "../hooks/use-item-list";
 import { ItemDialog } from "./ItemDialog";
@@ -23,6 +23,9 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
   const { itemGroup } = props;
   const { dialogState, setOpened, close } = useCollapsibleListItem();
   const [tableOpened, setTableOpened] = useState(false);
+  useEffect(() => {
+    setTableOpened(false);
+  }, [itemGroup]);
 
   const onClickButton = () => {
     setTableOpened(!tableOpened);
