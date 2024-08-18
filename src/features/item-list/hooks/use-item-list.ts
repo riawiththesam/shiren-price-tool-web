@@ -35,8 +35,8 @@ interface FilterdItemListState {
 }
 
 const initialFilter: ItemFilter = {
-  purchaseType: "buy",
-  showItemType: "Kusa",
+  purchaseType: "all",
+  showItemType: "All",
   enableUnique: false,
 };
 
