@@ -55,6 +55,13 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
 
       <RadioGroup row onChange={handleOnChangeShowBuyOrSell}>
         <StyledRadioFormControlLabel
+          value="all"
+          control={
+            <Radio checked={filter.purchaseType == "all"} size="small" />
+          }
+          label="全"
+        />
+        <StyledRadioFormControlLabel
           value="buy"
           control={
             <Radio checked={filter.purchaseType == "buy"} size="small" />
@@ -68,16 +75,16 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
           }
           label="売"
         />
-        <StyledRadioFormControlLabel
-          value="all"
-          control={
-            <Radio checked={filter.purchaseType == "all"} size="small" />
-          }
-          label="全"
-        />
       </RadioGroup>
 
       <RadioGroup row onChange={handleOnChangeShowItemType}>
+        <StyledRadioFormControlLabel
+          value="All"
+          control={
+            <Radio checked={filter.showItemType == "All"} size="small" />
+          }
+          label="全"
+        />
         <StyledRadioFormControlLabel
           value="Kusa"
           control={
@@ -112,13 +119,6 @@ export const ItemListFilter: FC<ItemListSubheaderProps> = (props) => {
             <Radio checked={filter.showItemType == "Udewa"} size="small" />
           }
           label="腕"
-        />
-        <StyledRadioFormControlLabel
-          value="All"
-          control={
-            <Radio checked={filter.showItemType == "All"} size="small" />
-          }
-          label="全"
         />
       </RadioGroup>
 
