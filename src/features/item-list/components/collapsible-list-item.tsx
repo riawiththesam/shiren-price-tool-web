@@ -8,7 +8,8 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { FC } from "react";
+import Fade from "@mui/material/Fade";
+import { FC, useState } from "react";
 import { ItemListTable } from "./item-list-table";
 import { ItemGroup } from "../hooks/use-item-list";
 import { ItemDialog } from "./ItemDialog";
@@ -22,9 +23,10 @@ interface CollapsibleListItemProps {
 export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
   const { itemGroup, onClick } = props;
   const { dialogState, setOpened, close } = useCollapsibleListItem();
+  const [tableOpened, setTableOpened] = useState(false);
 
   const onClickButton = () => {
-    onClick(itemGroup.value);
+    setTableOpened(!tableOpened);
   };
 
   return (
@@ -62,10 +64,31 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
             </Box>
           ))}
         </Typography>
-        {itemGroup.opened ? <RemoveIcon /> : <AddIcon />}
+        <Box sx={{ position: "relative" }}>
+          <Fade in={tableOpened}>
+            <RemoveIcon
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                transform: "translate(-50%, -50%)",
+              }}
+            />
+          </Fade>
+          <Fade in={!tableOpened}>
+            <AddIcon
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                transform: "translate(-50%, -50%)",
+              }}
+            />
+          </Fade>
+        </Box>
       </ListItemButton>
       <Collapse
-        in={itemGroup.opened}
+        in={tableOpened}
         timeout={200}
         unmountOnExit
         sx={{ paddingLeft: { xs: "0px", sm: "20px" } }}
