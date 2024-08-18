@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import Fade from "@mui/material/Fade";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { ItemListTable } from "./item-list-table";
 import { ItemGroup } from "../hooks/use-item-list";
 import { ItemDialog } from "./ItemDialog";
@@ -21,11 +21,11 @@ interface CollapsibleListItemProps {
 
 export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
   const { itemGroup } = props;
-  const { dialogState, setOpened, close } = useCollapsibleListItem();
-  const [tableOpened, setTableOpened] = useState(false);
+  const { state, setOpened, close, setTableOpened } =
+    useCollapsibleListItem(itemGroup);
 
   const onClickButton = () => {
-    setTableOpened(!tableOpened);
+    setTableOpened(!state.tableOpened);
   };
 
   return (
@@ -64,7 +64,7 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
           ))}
         </Typography>
         <Box sx={{ position: "relative" }}>
-          <Fade in={tableOpened}>
+          <Fade in={state.tableOpened}>
             <RemoveIcon
               sx={{
                 position: "absolute",
@@ -74,7 +74,7 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
               }}
             />
           </Fade>
-          <Fade in={!tableOpened}>
+          <Fade in={!state.tableOpened}>
             <AddIcon
               sx={{
                 position: "absolute",
@@ -87,7 +87,7 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
         </Box>
       </ListItemButton>
       <Collapse
-        in={tableOpened}
+        in={state.tableOpened}
         timeout={200}
         unmountOnExit
         sx={{ paddingLeft: { xs: "0px", sm: "20px" } }}
@@ -99,8 +99,8 @@ export const CollapsibleListItem: FC<CollapsibleListItemProps> = (props) => {
         />
       </Collapse>
       <ItemDialog
-        isOpened={dialogState.isOpened}
-        item={dialogState.item}
+        isOpened={state.isOpened}
+        item={state.item}
         handleClose={close}
       />
     </ListItem>
