@@ -18,7 +18,6 @@ export interface ItemFilter {
 export interface ItemGroup {
   value: string;
   itemList: Array<Item>;
-  opened: boolean;
 }
 
 interface ItemListState {
@@ -144,21 +143,18 @@ export const useItemList = () => {
       return {
         value: group.value,
         itemList: group.itemList,
-        opened: false,
       };
     });
     const initialSellGroupedList = getFullGroupedList("sell").map((group) => {
       return {
         value: group.value,
         itemList: group.itemList,
-        opened: false,
       };
     });
     const initialAllGroupedList = getAllGroupedList().map((group) => {
       return {
         value: group.value,
         itemList: group.itemList,
-        opened: false,
       };
     });
     setItemListState((prev) => {
@@ -172,24 +168,6 @@ export const useItemList = () => {
       };
     });
   }, [setItemListState]);
-
-  function toggleItemOpened(value: string) {
-    const next = itemListState.groupedListSet[
-      itemListState.filter.purchaseType
-    ].map((group) => {
-      return {
-        ...group,
-        opened: group.value == value ? !group.opened : group.opened,
-      };
-    });
-    setItemListState({
-      ...itemListState,
-      groupedListSet: {
-        ...itemListState.groupedListSet,
-        [itemListState.filter.purchaseType]: next,
-      },
-    });
-  }
 
   function setPurchaseType(purchaseType: PurchaseType | "all") {
     setItemListState({
@@ -227,6 +205,5 @@ export const useItemList = () => {
     setPurchaseType,
     setItemType,
     setEnableUnique,
-    toggleItemOpened,
   };
 };
