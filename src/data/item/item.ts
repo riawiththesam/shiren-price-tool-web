@@ -10,6 +10,12 @@ export const itemStateRateMap: ItemStateRateMapType = {
   Shukufuku: 2,
 };
 
+/**
+ * アイテムマスタの情報から呪われたアイテム情報を生成
+ *
+ * @param master
+ * @returns
+ */
 export function mapToNoroi(master: MasterItem): Item {
   return {
     name: master.name,
@@ -23,6 +29,12 @@ export function mapToNoroi(master: MasterItem): Item {
   };
 }
 
+/**
+ * アイテムマスタの情報から祝福されたアイテム情報を生成
+ *
+ * @param master
+ * @returns
+ */
 export function mapToShukufuku(master: MasterItem): Item {
   return {
     name: master.name,
@@ -36,6 +48,12 @@ export function mapToShukufuku(master: MasterItem): Item {
   };
 }
 
+/**
+ * アイテムマスタの情報から呪い、祝福でない通常のアイテム情報を生成
+ *
+ * @param master
+ * @returns
+ */
 export function mapToNormal(master: MasterItem): Item {
   return {
     name: master.name,
