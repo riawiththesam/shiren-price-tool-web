@@ -59,4 +59,33 @@ describe("use-item-list", () => {
 
     expect(result.current.itemListState.filter).toEqual(expectedFilter);
   });
+
+  it("useItemListのuniqueを設定", () => {
+    const expectedFilter: ItemFilter = {
+      purchaseType: "all",
+      showItemType: "All",
+      enableUnique: true,
+    };
+    const { result } = renderHook(() => useItemList());
+    act(() => {
+      result.current.setEnableUnique(true);
+    });
+
+    expect(result.current.itemListState.filter).toEqual(expectedFilter);
+  });
+
+  it("useItemListのuniqueを解除", () => {
+    const expectedFilter: ItemFilter = {
+      purchaseType: "all",
+      showItemType: "All",
+      enableUnique: false,
+    };
+    const { result } = renderHook(() => useItemList());
+    act(() => {
+      result.current.setEnableUnique(true);
+      result.current.setEnableUnique(false);
+    });
+
+    expect(result.current.itemListState.filter).toEqual(expectedFilter);
+  });
 });
