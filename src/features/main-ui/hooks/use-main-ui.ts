@@ -7,7 +7,7 @@ export const featureUIStateList = [
 ] as const;
 export type FeatureUIStateType = (typeof featureUIStateList)[number];
 
-interface MainUIState {
+export interface MainUIState {
   featureUIState: FeatureUIStateType;
   drawerOpened: boolean;
 }
