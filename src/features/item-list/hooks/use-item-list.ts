@@ -20,7 +20,7 @@ export interface ItemGroup {
   itemList: Array<Item>;
 }
 
-interface ItemListState {
+export interface ItemListState {
   groupedListSet: {
     buy: Array<ItemGroup>;
     sell: Array<ItemGroup>;
@@ -29,7 +29,7 @@ interface ItemListState {
   filter: ItemFilter;
 }
 
-interface FilterdItemListState {
+export interface FilterdItemListState {
   filteredList: Array<ItemGroup>;
 }
 
