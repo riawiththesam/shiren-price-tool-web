@@ -88,4 +88,89 @@ describe("use-item-list", () => {
 
     expect(result.current.itemListState.filter).toEqual(expectedFilter);
   });
+
+  it("useItemListのitemTypeを草に設定", () => {
+    const expectedFilter: ItemFilter = {
+      purchaseType: "all",
+      showItemType: "Kusa",
+      enableUnique: false,
+    };
+    const { result } = renderHook(() => useItemList());
+    act(() => {
+      result.current.setItemType("Kusa");
+    });
+
+    expect(result.current.itemListState.filter).toEqual(expectedFilter);
+  });
+
+  it("useItemListのitemTypeを巻物に設定", () => {
+    const expectedFilter: ItemFilter = {
+      purchaseType: "all",
+      showItemType: "Makimono",
+      enableUnique: false,
+    };
+    const { result } = renderHook(() => useItemList());
+    act(() => {
+      result.current.setItemType("Makimono");
+    });
+
+    expect(result.current.itemListState.filter).toEqual(expectedFilter);
+  });
+
+  it("useItemListのitemTypeを壺に設定", () => {
+    const expectedFilter: ItemFilter = {
+      purchaseType: "all",
+      showItemType: "Tsubo",
+      enableUnique: false,
+    };
+    const { result } = renderHook(() => useItemList());
+    act(() => {
+      result.current.setItemType("Tsubo");
+    });
+
+    expect(result.current.itemListState.filter).toEqual(expectedFilter);
+  });
+
+  it("useItemListのitemTypeを杖に設定", () => {
+    const expectedFilter: ItemFilter = {
+      purchaseType: "all",
+      showItemType: "Tsue",
+      enableUnique: false,
+    };
+    const { result } = renderHook(() => useItemList());
+    act(() => {
+      result.current.setItemType("Tsue");
+    });
+
+    expect(result.current.itemListState.filter).toEqual(expectedFilter);
+  });
+
+  it("useItemListのitemTypeを腕輪に設定", () => {
+    const expectedFilter: ItemFilter = {
+      purchaseType: "all",
+      showItemType: "Udewa",
+      enableUnique: false,
+    };
+    const { result } = renderHook(() => useItemList());
+    act(() => {
+      result.current.setItemType("Udewa");
+    });
+
+    expect(result.current.itemListState.filter).toEqual(expectedFilter);
+  });
+
+  it("useItemListのitemTypeをAllに戻す", () => {
+    const expectedFilter: ItemFilter = {
+      purchaseType: "all",
+      showItemType: "All",
+      enableUnique: false,
+    };
+    const { result } = renderHook(() => useItemList());
+    act(() => {
+      result.current.setItemType("Udewa");
+      result.current.setItemType("All");
+    });
+
+    expect(result.current.itemListState.filter).toEqual(expectedFilter);
+  });
 });
