@@ -9,6 +9,7 @@
     "tsc": "tsc",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test": "jest",
+    "test:watch": "jest --watch",
     "preview": "vite preview"
   },
   "dependencies": {
